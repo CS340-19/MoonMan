@@ -39,7 +39,7 @@
   
   **Time Line:**
   - 2/4/19 - 2/18/19: Build the game foundation and framework, main game loop, rendering, resource loading(sprites, music, sound effects), core object creation, object controller, key and mouse input detection. 
-  - 2/18/19 - 2/25/19: Character and level design, sprite sheet creation, menu implementaion, character and enemy motion, collision detection.
+  - 2/18/19 - 2/25/19: Character and level design, sprite sheet creation, menu implementaion, character and enemy motion, collision detection, camera creation.
   - 2/25/19 - 3/4/19: Weapon design and implementaion, further motion tweaking and base enemy AI, creating multiple enemies(strong/weak).
   - 3/4/19 - 3/11/19: Hitbox detection for weapons, player and enemy health, scoring system and saving game data to file.
   - 3/11/19 - 3/18/19: Player customization, weapon upgrades, creating multiple levels/waves of enemies.

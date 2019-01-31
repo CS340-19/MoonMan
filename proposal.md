@@ -60,7 +60,7 @@ All members of the team have vast programming experience in languages such as C/
 - **Antonio Vega:** Antonio is from a small town called McKenzie located in West Tennessee. He is a junior undergraduate majoring in Computer Science. Prior to attending undergraduate studies, he had no experience programming whatsoever. Skills include: programming in C/C++, Photoshop and Lightroom. Currently learning about systems programming, automata, and operting systems.
 - **Julian Ball:** info goes here
 - **Zach McMichael:** info goes here
-- **Adam Tutko:** info goes here
+- **Adam Tutko:** Adam is an undergraduate in pursuit of his Bachelor in Computer Science. He has 2 and a half years of experience programming in C++/C and has a firm grasp on HTML and CSS as well as some experience in Python. Though he lacks any prior experience with Java, his solid programming foundation will lend itself to a quick and solid understanding of the language.
 
 **Summary**
 

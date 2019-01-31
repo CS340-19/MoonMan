@@ -38,16 +38,19 @@
   The project is scheduled to be completed on time with some margin for unforeseen circumstances. If for some reason though, the project is unfinished based on the final implementation that is conceive by the team at the start of the project, the result will still net a working game. Since the first step is to get a basic framework for the game and get the most basic game mechanics and functions implemented, this will for sure be in the game. Things that might not make it, if everything goes south, would include, high end animations and sound, complex combat mechanics, and complex menus and leveling mechanics. This strategy for game development should insure a base working game with less complexity but still a fun working version to play with. This will complete the original goal, if not whole heartedly, by delivering a 2d sidescrolling game.
   
   **Time Line:**
-  - 2/4/19 - 2/18/19: Build the game foundation and framework, main game loop, rendering, resource loading(sprites, music, sound effects), core object creation, object controller, key and mouse input detection. 
-  - 2/18/19 - 2/25/19: Character and level design, sprite sheet creation, menu implementaion, character and enemy motion, collision detection, camera creation.
-  - 2/25/19 - 3/4/19: Weapon design and implementaion, further motion tweaking and base enemy AI, creating multiple enemies(strong/weak).
-  - 3/4/19 - 3/11/19: Hitbox detection for weapons, player and enemy health, scoring system and saving game data to file.
-  - 3/11/19 - 3/18/19: Player customization, weapon upgrades, creating multiple levels/waves of enemies.
-  - 3/18/19 - 3/25/19: Further player and weapon customization, adding different playable characters with unique attributes.
-  - 3/25/19 - 4/1/19: Beta testing and further motion/game mechanics tweaks as needed. 
-  - 4/1/19 - 4/8/19: Bug fixes/gameplay tweaks, adding between level mini-games(meteor showers, etc).
-  - 4/8/19 - 4/15/19: Final testing and small last minute modifications.
-  - 4/15/19 - 4/22/19: Project completion/game release.
+  
+  | Date Issued | Date for Completion | Task |
+  | :---: | :---: | --- |
+  | 2/4/19 | 2/18/19 | Build the game foundation and framework, main game loop, rendering, resource loading(sprites, music, sound effects), core object creation, object controller, key and mouse input detection. |
+  | 2/18/19 | 2/25/19 | Character and level design, sprite sheet creation, menu implementaion, character and enemy motion, collision detection, camera creation. |
+  | 2/25/19 | 3/4/19 | Weapon design and implementaion, further motion tweaking and base enemy AI, creating multiple enemies(strong/weak). |
+  | 3/4/19 | 3/11/19 | Hitbox detection for weapons, player and enemy health, scoring system and saving game data to file. |
+  | 3/11/19 | 3/18/19 | Player customization, weapon upgrades, creating multiple levels/waves of enemies. |
+  | 3/18/19 | 3/25/19 | Further player and weapon customization, adding different playable characters with unique attributes. |
+  | 3/25/19 | 4/1/19 | Beta testing and further motion/game mechanics tweaks as needed. |
+  | 4/1/19 | 4/8/19 | Bug fixes/gameplay tweaks, adding between level mini-games(meteor showers, etc). |
+  | 4/8/19 | 4/15/19 | Final testing and small last minute modifications. |
+  | 4/15/19 | 4/22/19 | Project completion/game release. |
     
 
 ## Team

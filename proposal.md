@@ -61,7 +61,7 @@ All members of the team have vast programming experience in languages such as C/
 **Individual Background:** 
 - **Dylan Lee:** Dylan is a undergraduate student in his junior year, majoring in Computer Science. His experience includes 2.5 years of programming in C and C++, as well as some simple C++ game development in his free time. Although he is not well versed in Java, his expereince will allow an easy transition to the new language.   
 - **Antonio Vega:** Antonio is from a small town called McKenzie located in West Tennessee. He is a junior undergraduate majoring in Computer Science. Prior to attending undergraduate studies, he had no experience programming whatsoever. Skills include: programming in C/C++, Photoshop and Lightroom. Currently learning about systems programming, automata, and operting systems.
-- **Julian Ball:** info goes here
+- **Julian Ball:** Julian started programmig his freshman year and has learned about C/C++, vim, Python and is currently learning about shell scripts. he has recently been doing research that requires basic knowledge of machine learning concepts and would like to continue learning about artificial intelligence. Julian also is very interested in game development and is excited to be a part of this project.
 - **Zach McMichael:** info goes here
 - **Adam Tutko:** Adam is an undergraduate in pursuit of his Bachelor in Computer Science. He has 2 and a half years of experience programming in C++/C and has a firm grasp on HTML and CSS as well as some experience in Python. Though he lacks any prior experience with Java, his solid programming foundation will lend itself to a quick and solid understanding of the language.
 

@@ -1,19 +1,19 @@
 
 pkg - game.backend<br />
-      class - Game.java
-      class - GameObject.java
-      class - Handler.java
-      class - KeyInput.java
-      class - MouseInput.java
-      class - Window.java
-      class - Resource.java
-pkg - game.object
-      class - ID.java
-      class - Floor.java
-      folder - game.characters
-               class - Player.java
-               class - SquidMan.java
-pkg - game.graphics
-      class - SpriteSheet.java
-pkg - game.sounds
+      class - Game.java<br />
+      class - GameObject.java<br />
+      class - Handler.java<br />
+      class - KeyInput.java<br />
+      class - MouseInput.java<br />
+      class - Window.java<br />
+      class - Resource.java<br />
+pkg - game.object<br />
+      class - ID.java<br />
+      class - Floor.java<br />
+      folder - game.characters<br />
+               class - Player.java<br />
+               class - SquidMan.java<br />
+pkg - game.graphics<br />
+      class - SpriteSheet.java<br />
+pkg - game.sounds<br />
 

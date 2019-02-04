@@ -1,6 +1,6 @@
 
 pkg - game.backend<br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; class - Game.java<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; class - Game.java<br />
       class - GameObject.java<br />
       class - Handler.java<br />
       class - KeyInput.java<br />

@@ -6,9 +6,6 @@ import java.awt.event.KeyEvent;
 import game.object.ID;
 import game.object.Player;
 
-
-
-
 public class KeyInput extends KeyAdapter {
 
 	private Boolean[] keyPressed = new Boolean[2];
@@ -16,10 +13,10 @@ public class KeyInput extends KeyAdapter {
 
 	public KeyInput(Handler handler) {
 
-
 	}
 		
-
+	boolean jumped = false;
+	int lastKey = -1;
 	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
@@ -30,16 +27,14 @@ public class KeyInput extends KeyAdapter {
 			}
 		}
 			if(player.getID() == ID.Player) {
-				//player.setJumping(true);
-				if(key == KeyEvent.VK_W && !player.isJumping()) {
-					player.setJumping(true);
-					player.setVelY(-20);
+				if(key == KeyEvent.VK_W && key != lastKey) {
+					lastKey = key;
+					if(!player.isJumping() && jumped == false) {
+						player.setJumping(true);
+						player.setVelY(-20);
+						jumped = true;
+					}
 				}
-				/*
-				if(key == KeyEvent.VK_S) {
-					player.setVelY(5);
-				}
-				*/
 				if(key == KeyEvent.VK_A) {
 					player.setVelX(-5);
 					keyPressed[0] = true;
@@ -63,12 +58,15 @@ public class KeyInput extends KeyAdapter {
 			
 			if(player.getID() == ID.Player) {
 				if(key == KeyEvent.VK_W) {
-					player.setVelY(0);
+					lastKey = -1;
+					jumped = false;
 				}
 				if(key == KeyEvent.VK_A) {
+					player.setVelX(0);
 					keyPressed[0] = false;
 				}
 				if(key == KeyEvent.VK_D) {
+					player.setVelX(0);
 					keyPressed[1] = false;
 				}
 				

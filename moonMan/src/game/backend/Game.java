@@ -19,7 +19,7 @@ public class Game extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = -6112428091888191314L;
 
-	public static final int WIDTH = 1280, HEIGHT = 720;
+	public static int WIDTH = 1920, HEIGHT = 1080;
 	public BufferedImage background;
 	private Thread thread;
 	private boolean running = false;
@@ -38,7 +38,7 @@ public class Game extends Canvas implements Runnable {
 
 		int x = -32;
 		for(int i = 0; i <= 60; i++) {
-			Handler.addObject(new Floor(x, HEIGHT - 64, 64, 64, ID.Floor));
+			Handler.addObject(new Floor(x, HEIGHT - 64, WIDTH, 64, ID.Floor));
 			x += 32;
 		}
 		

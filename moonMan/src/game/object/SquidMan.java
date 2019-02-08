@@ -22,7 +22,7 @@ public class SquidMan extends GameObject {
 	
 	private static LinkedList<GameObject> floorBlocks = Handler.getObjects();
 	
-	public static final int WIDTH = 1280, HEIGHT = 720;	
+	public static final int WIDTH = 1920, HEIGHT = 1080;	
 	public BufferedImage squidMan_ss = null;
 	public BufferedImage squidMan = null;
 	public SpriteSheetResolver ss;

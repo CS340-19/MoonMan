@@ -27,6 +27,7 @@ public class Player extends GameObject {
 	public BufferedImage moonMan = null;
 	public SpriteSheetResolver ss;
 	private Floor floor;
+	private SquidMan squidman;
 	Random r = new Random();
 	private Boolean jumping = false;
 	private Boolean falling = true;

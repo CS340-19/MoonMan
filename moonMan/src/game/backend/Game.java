@@ -21,6 +21,7 @@ public class Game extends Canvas implements Runnable {
 
 	public static int WIDTH = 1920, HEIGHT = 1080;
 	public BufferedImage background;
+	public BufferedImage foreground;
 	private Thread thread;
 	private boolean running = false;
 	private boolean imageLoaded = false;
@@ -69,7 +70,8 @@ public class Game extends Canvas implements Runnable {
 	public void init() {
 		if( imageLoaded == false ) {	
 			try {
-				background = ImageIO.read(new File("./src/game/graphics/sprites/MoonBackground.png"));
+				foreground = ImageIO.read(new File("./src/game/graphics/sprites/MoonBackgroundHiRes.png"));
+				background = ImageIO.read(new File("./src/game/graphics/sprites/MoonForegroundHiRes.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -124,6 +126,7 @@ public class Game extends Canvas implements Runnable {
 		
 		Graphics g = bs.getDrawGraphics();
 
+		g.drawImage(foreground, 0, 0, WIDTH, HEIGHT, null);
 		g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
 
 		handler.render(g, 1, 1);

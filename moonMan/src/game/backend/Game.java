@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import game.object.Floor;
 import game.object.ID;
 import game.object.Player;
+import game.object.SquidMan;
 
 public class Game extends Canvas implements Runnable {
 	
@@ -44,7 +45,7 @@ public class Game extends Canvas implements Runnable {
 		this.addKeyListener(new KeyInput(handler));
 		
 		Handler.addObject(new Player(WIDTH/2 - 32, HEIGHT/2 - 32, 64, 64, ID.Player));
-		
+		Handler.addObject(new SquidMan(WIDTH/2 - 32, HEIGHT/2 - 32, 64, 64, ID.Enemy));
 		
 		
 	}
@@ -64,7 +65,18 @@ public class Game extends Canvas implements Runnable {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void init() {
+		if( imageLoaded == false ) {	
+			try {
+				background = ImageIO.read(new File("./src/game/graphics/sprites/MoonBackground.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			imageLoaded = true;
+		}
+	}
+	
 	//Main game loop
 	public void run() {
 		long lastTime = System.nanoTime();
@@ -73,6 +85,8 @@ public class Game extends Canvas implements Runnable {
 		double delta = 0;
 		long timer = System.currentTimeMillis();
 		int frames = 0;
+		init();
+		
 		while(running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
@@ -101,14 +115,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	private void render() {
-	if( imageLoaded == false ) {	
-		try {
-			background = ImageIO.read(new File("./src/game/graphics/sprites/MoonBackground.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		imageLoaded = true;
-	}
+
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null) {
 			this.createBufferStrategy(3);
@@ -116,14 +123,10 @@ public class Game extends Canvas implements Runnable {
 		}
 		
 		Graphics g = bs.getDrawGraphics();
-		
-		//g.setColor(Color.black);
-		//g.fillRect(0, 0, WIDTH, HEIGHT);
-		
+
 		g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
-		//g.fillRect(0, 0, WIDTH, HEIGHT);
-		//g.setColor(Color.black);
-		handler.render(g);
+
+		handler.render(g, 1, 1);
 		
 		g.dispose();
 		bs.show();

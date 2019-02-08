@@ -1,7 +1,10 @@
 package game.object;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,28 +15,36 @@ import javax.imageio.ImageIO;
 
 import game.backend.GameObject;
 import game.backend.Handler;
+import game.graphics.BufferedImageLoader;
+import game.graphics.SpriteSheetResolver;
 
 public class Player extends GameObject {
 	
 	private static LinkedList<GameObject> floorBlocks = Handler.getObjects();
 	
 	public static final int WIDTH = 1280, HEIGHT = 720;	
-	public BufferedImage moonMan;
+	public BufferedImage moonMan_ss = null;
+	public BufferedImage moonMan = null;
+	public SpriteSheetResolver ss;
 	private Floor floor;
 	Random r = new Random();
 	private Boolean jumping = false;
 	private Boolean falling = true;
 	public int gravity = 1;
-	
+	public Boolean facing_right = true;
+	public Boolean walking = false;
+	public Boolean in_air = false;
+	public int walk_sleep_counter = 0;
+	public int which_step = 0;
+	public int w_row = 1;
+	public int w_col = 1;
 	
 	public Player(int x, int y, int width, int height, ID id) {
 		super(x, y, id);
-		
-		try {
-			moonMan = ImageIO.read(new File("./src/game/graphics/sprites/MoonMan.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	
+		BufferedImageLoader loader = new BufferedImageLoader();
+		moonMan_ss = loader.loadImage("./src/game/graphics/sprites/MoonMan_SS.png");
+		ss = new SpriteSheetResolver(moonMan_ss);
 		
 	}
 	
@@ -43,11 +54,69 @@ public class Player extends GameObject {
 		
 		fall();
 		checkCollision();
+		
+		if(jumping == true) {
+			in_air = true;
+			walking = false;
+		}else {
+			in_air = false;
+		}
+
+		if(walking == true) {
+			if(walk_sleep_counter == 0) {
+				if(which_step == 0) {
+					w_row = 1;
+					w_col = 5;
+				} else if(which_step == 1) {
+					w_row = 2;
+					w_col = 5;				
+				} else if(which_step == 2) {
+					w_row = 3;
+					w_col = 5;
+				} else if(which_step == 3) {
+					w_row = 4;
+					w_col = 5;
+					which_step = 0;
+				} else {
+					w_row = 1;
+					w_col = 5;
+				}
+				which_step++;
+			}
+			walk_sleep_counter++;
+			if(walk_sleep_counter == 12) {
+				walk_sleep_counter = 0;
+			}
+		} else {
+			which_step = 0;
+			walk_sleep_counter = 0;
+		}
+
 	}
-	
-	public void render(Graphics g) {
-		g.drawImage(moonMan, x, y, 64, 64, null);
-		//g.fillRect(x, y, 50, 50);
+
+	public void render(Graphics g, int row, int col ) {
+		
+		if(in_air == true) {
+			row = 4;
+			col = 4;
+			walking = false;
+		}
+		if(walking == true) {
+			row = w_row;
+			col = w_col;
+		}
+
+		
+		moonMan = ss.grabImage(row, col, 64, 64);
+		
+		if(facing_right == false) {
+			// Flip the image horizontally
+			AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+			tx.translate(-moonMan.getWidth(null), 0);
+			AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+			moonMan = op.filter(moonMan, null);	
+		}	
+		g.drawImage(moonMan,  x, y, 64, 64, null);
 	}
 	
 	private void checkCollision() {
@@ -81,4 +150,27 @@ public class Player extends GameObject {
 		this.jumping = jumping;
 	}	
 	
+	public Boolean isFacing_right() {
+		return facing_right;
+	}
+	
+	public void setFacing_right(Boolean facing_right) {
+		this.facing_right = facing_right;
+	}
+	
+	public Boolean isWalking() {
+		return walking;
+	}
+	
+	public void setWalking(Boolean walking) {
+		this.walking = walking;
+	}
+	
+	public Boolean isIn_air() {
+		return in_air;
+	}
+	
+	public void setIn_air(Boolean in_air) {
+		this.in_air = in_air;
+	}
 }

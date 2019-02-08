@@ -37,10 +37,14 @@ public class KeyInput extends KeyAdapter {
 				}
 				if(key == KeyEvent.VK_A) {
 					player.setVelX(-5);
+					player.setFacing_right(false);
+					player.setWalking(true);
 					keyPressed[0] = true;
 				}
 				if(key == KeyEvent.VK_D) {
 					player.setVelX(5);
+					player.setFacing_right(true);
+					player.setWalking(true);
 					keyPressed[1] = true;
 				}
 			}
@@ -63,10 +67,12 @@ public class KeyInput extends KeyAdapter {
 				}
 				if(key == KeyEvent.VK_A) {
 					player.setVelX(0);
+					player.setWalking(false);
 					keyPressed[0] = false;
 				}
 				if(key == KeyEvent.VK_D) {
 					player.setVelX(0);
+					player.setWalking(false);
 					keyPressed[1] = false;
 				}
 				

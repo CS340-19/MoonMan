@@ -16,10 +16,10 @@ public class Handler {
 		}
 	}
 	
-	public void render(Graphics g) {
+	public void render(Graphics g, int row, int col) {
 		for(int i = 0; i < objects.size(); i++) {
 			GameObject object = objects.get(i);
-			object.render(g);
+			object.render(g, row, col);
 		}
 	}
 	

@@ -14,6 +14,7 @@ import game.object.Floor;
 import game.object.ID;
 import game.object.Player;
 import game.object.SquidMan;
+import game.screens.Menu;
 
 public class Game extends Canvas implements Runnable {
 	
@@ -26,9 +27,7 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private boolean imageLoaded = false;
 	private Handler handler;
-	
-	
-	
+	public static GameState state = GameState.MENU;
 	
 	
 	public Game() {
@@ -36,7 +35,9 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler();
 		
 		new Window(WIDTH, HEIGHT, "Moon Man", this);
-
+		
+		Menu.initMenu();
+		
 		int x = -32;
 		for(int i = 0; i <= 60; i++) {
 			Handler.addObject(new Floor(x, HEIGHT - 64, WIDTH, 64, ID.Floor));
@@ -125,11 +126,29 @@ public class Game extends Canvas implements Runnable {
 		}
 		
 		Graphics g = bs.getDrawGraphics();
-
-		g.drawImage(foreground, 0, 0, WIDTH, HEIGHT, null);
-		g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
-
-		handler.render(g, 1, 1);
+		
+		switch(state) {
+			case SPLASH_SCREEN:
+				//SplashScreen.render(g);
+				//state = MENU;
+				break;
+			case GAME:
+				g.drawImage(foreground, 0, 0, WIDTH, HEIGHT, null);
+				g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
+				handler.render(g, 1, 1);
+				break;
+			case MENU:
+				Menu.render(g);
+				break;
+			case OPTIONS:
+				break;
+			case PAUSE:
+				break;
+			default:
+				break;
+		}
+		
+		
 		
 		g.dispose();
 		bs.show();

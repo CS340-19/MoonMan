@@ -20,7 +20,6 @@ public class KeyInput extends KeyAdapter {
 	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		
 		for(int i = 0; i < Handler.getObjects().size(); i++) {
 			if(Handler.getObjects().get(i).getID() == ID.Player) {
 				player = (Player) Handler.getObjects().get(i);

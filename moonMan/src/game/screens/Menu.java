@@ -11,7 +11,8 @@ import game.graphics.BufferedImageLoader;
 
 public class Menu {
 
-	private static Rectangle play, options, quit;
+	//private static Rectangle play, options, quit;
+	public static Rectangle play, options, quit;
 	private static int centerX = Game.WIDTH /2;
 	//public static BufferedImage menuBackground = null;
 	

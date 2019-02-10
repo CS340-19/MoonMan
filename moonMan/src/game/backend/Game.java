@@ -20,7 +20,7 @@ public class Game extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = -6112428091888191314L;
 
-	public static int WIDTH = 1920, HEIGHT = 1080;
+	public static int WIDTH = 1280, HEIGHT = 720;
 	public BufferedImage background;
 	public BufferedImage foreground;
 	private Thread thread;
@@ -139,6 +139,7 @@ public class Game extends Canvas implements Runnable {
 				break;
 			case MENU:
 				Menu.render(g);
+				this.addMouseListener(new MouseInput());
 				break;
 			case OPTIONS:
 				break;

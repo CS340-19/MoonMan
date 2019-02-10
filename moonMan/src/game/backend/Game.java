@@ -10,6 +10,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import game.graphics.BufferedImageLoader;
 import game.object.Floor;
 import game.object.ID;
 import game.object.Player;
@@ -20,9 +21,13 @@ public class Game extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = -6112428091888191314L;
 
-	public static int WIDTH = 1280, HEIGHT = 720;
+	public static int WIDTH = 1920, HEIGHT = 1080;
 	public BufferedImage background;
 	public BufferedImage foreground;
+	public BufferedImage mm_plate;
+	public BufferedImage score_plate;
+	public BufferedImage jetpack_plate;
+	public int enemy_offset;
 	private Thread thread;
 	private boolean running = false;
 	private boolean imageLoaded = false;
@@ -47,7 +52,9 @@ public class Game extends Canvas implements Runnable {
 		this.addKeyListener(new KeyInput(handler));
 		
 		Handler.addObject(new Player(WIDTH/2 - 32, HEIGHT/2 - 32, 64, 64, ID.Player));
-		Handler.addObject(new SquidMan(WIDTH/2 - 32, HEIGHT/2 - 32, 64, 64, ID.Enemy));
+		Random random = new Random();
+		enemy_offset = random.nextInt(1000) - random.nextInt(1000);
+		Handler.addObject(new SquidMan(WIDTH/2 - 32 - enemy_offset, HEIGHT/2 - 32, 64, 64, ID.Enemy));
 		
 		
 	}
@@ -69,15 +76,12 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public void init() {
-		if( imageLoaded == false ) {	
-			try {
-				foreground = ImageIO.read(new File("./src/game/graphics/sprites/MoonBackgroundHiRes.png"));
-				background = ImageIO.read(new File("./src/game/graphics/sprites/MoonForegroundHiRes.png"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			imageLoaded = true;
-		}
+		BufferedImageLoader loader = new BufferedImageLoader();
+		foreground = loader.loadImage("./src/game/graphics/sprites/MoonForegroundHiRes.png");
+		background = loader.loadImage("./src/game/graphics/sprites/MoonBackgroundHiRes.png");
+		mm_plate = loader.loadImage("./src/game/graphics/sprites/MoonManPlate.png");
+		score_plate = loader.loadImage("./src/game/graphics/sprites/Score Plate.png");
+		jetpack_plate = loader.loadImage("./src/game/graphics/sprites/JetPackPlate.png");
 	}
 	
 	//Main game loop
@@ -133,8 +137,11 @@ public class Game extends Canvas implements Runnable {
 				//state = MENU;
 				break;
 			case GAME:
-				g.drawImage(foreground, 0, 0, WIDTH, HEIGHT, null);
 				g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
+				g.drawImage(foreground, 0, 0, WIDTH, HEIGHT, null);
+				g.drawImage(mm_plate, 0, 0, 128, 128, null);
+				g.drawImage(score_plate, 0, 0, 256, 256, null);
+				g.drawImage(jetpack_plate, 0, 0, 256, 256, null);
 				handler.render(g, 1, 1);
 				break;
 			case MENU:

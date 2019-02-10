@@ -12,14 +12,14 @@ public class Window extends Canvas {
 	public Window(int width, int height, String title, Game game) {
 		JFrame frame = new JFrame(title);
 		
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setUndecorated(false); //full screen or windowed
 		
-		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		//Game.WIDTH = screenSize.width;
-		//Game.HEIGHT = screenSize.height;
-		Game.WIDTH = width;
-		Game.HEIGHT = height;
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		Game.WIDTH = screenSize.width;
+		Game.HEIGHT = screenSize.height;
+		//Game.WIDTH = width;
+		//Game.HEIGHT = height;
 		
 		frame.setPreferredSize(new Dimension(width, height));
 		frame.setMaximumSize(new Dimension(width, height));

@@ -39,9 +39,13 @@ public class Player extends GameObject {
 	public int which_step = 0;
 	public int w_row = 1;
 	public int w_col = 1;
+	public int width;
+	public int height;
 	
-	public Player(int x, int y, int width, int height, ID id) {
+	public Player(int x, int y, int tmp_width, int tmp_height, ID id) {
 		super(x, y, id);
+		width = tmp_width;
+		height = tmp_height;
 	
 		BufferedImageLoader loader = new BufferedImageLoader();
 		moonMan_ss = loader.loadImage("./src/game/graphics/sprites/MoonMan_SS.png");
@@ -117,7 +121,7 @@ public class Player extends GameObject {
 			AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
 			moonMan = op.filter(moonMan, null);	
 		}	
-		g.drawImage(moonMan,  x, y, 64, 64, null);
+		g.drawImage(moonMan,  x, y -20, 128, 128, null);
 	}
 	
 	private void checkCollision() {

@@ -42,9 +42,13 @@ public class SquidMan extends GameObject {
 	public int player_y = 0;
 	public int squidman_x = 0;
 	public int squidman_y = 0;
+	public int width;
+	public int height;
 	
-	public SquidMan(int x, int y, int width, int height, ID id) {
+	public SquidMan(int x, int y, int tmp_width, int tmp_height, ID id) {
 		super(x, y, id);
+		width = tmp_width;
+		height = tmp_height;
 	
 		BufferedImageLoader loader = new BufferedImageLoader();
 		squidMan_ss = loader.loadImage("./src/game/graphics/sprites/SquidMan_SS.png");
@@ -157,7 +161,7 @@ public class SquidMan extends GameObject {
 			AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
 			squidMan = op.filter(squidMan, null);	
 		}	
-		g.drawImage(squidMan,  x, y, 64, 64, null);
+		g.drawImage(squidMan,  x, y - 25, 128, 128, null);
 	}
 	
 	private void checkCollision() {

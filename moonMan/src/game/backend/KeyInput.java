@@ -20,18 +20,33 @@ public class KeyInput extends KeyAdapter {
 	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
+		
 		for(int i = 0; i < Handler.getObjects().size(); i++) {
 			if(Handler.getObjects().get(i).getID() == ID.Player) {
 				player = (Player) Handler.getObjects().get(i);
 			}
 		}
 			if(player.getID() == ID.Player) {
-				if(key == KeyEvent.VK_W && key != lastKey) {
+				if(key == KeyEvent.VK_SPACE && key != lastKey) {
 					lastKey = key;
 					if(!player.isJumping() && jumped == false) {
 						player.setJumping(true);
 						player.setVelY(-20);
 						jumped = true;
+					}
+				}
+				if(key == KeyEvent.VK_W && key != lastKey) {
+					lastKey = key;
+					if(player.isIn_air()) {
+						player.setFloating(true);
+						jumped = true;
+					}
+				}
+				if(key == KeyEvent.VK_W && key == lastKey) {
+					if(player.isIn_air() && player.is_floating) {
+						player.is_flying = true;
+						player.velY += 1;
+						
 					}
 				}
 				if(key == KeyEvent.VK_A) {
@@ -60,9 +75,12 @@ public class KeyInput extends KeyAdapter {
 		}
 			
 			if(player.getID() == ID.Player) {
-				if(key == KeyEvent.VK_W) {
+				if(key == KeyEvent.VK_SPACE) {
 					lastKey = -1;
 					jumped = false;
+				}
+				if(key == KeyEvent.VK_W) {
+					lastKey = -1;
 				}
 				if(key == KeyEvent.VK_A) {
 					player.setVelX(0);

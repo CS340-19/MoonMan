@@ -16,6 +16,7 @@ import game.object.ID;
 import game.object.Player;
 import game.object.SquidMan;
 import game.screens.Menu;
+import game.screens.SplashScreen;
 
 public class Game extends Canvas implements Runnable {
 	
@@ -29,10 +30,12 @@ public class Game extends Canvas implements Runnable {
 	public BufferedImage jetpack_plate;
 	public int enemy_offset;
 	private Thread thread;
+	private SplashScreen splashscreen;
 	private boolean running = false;
 	private boolean imageLoaded = false;
 	private Handler handler;
-	public static GameState state = GameState.MENU;
+	public static GameState state = GameState.SPLASH_SCREEN;
+	//public static GameState state = GameState.MENU;
 	
 	
 	public Game() {
@@ -119,6 +122,9 @@ public class Game extends Canvas implements Runnable {
 	
 	private void tick() {
 		handler.tick();
+		if(SplashScreen.done == false) {
+			SplashScreen.tick();
+		}
 	}
 	
 	private void render() {
@@ -133,8 +139,11 @@ public class Game extends Canvas implements Runnable {
 		
 		switch(state) {
 			case SPLASH_SCREEN:
-				//SplashScreen.render(g);
-				//state = MENU;
+				if(SplashScreen.done) {
+					state = GameState.MENU;
+				}else {
+					SplashScreen.render(g);
+				}
 				break;
 			case GAME:
 				g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);

@@ -37,15 +37,15 @@ public class KeyInput extends KeyAdapter {
 						jumped = true;
 					}
 				}
-				/* Q key = fly up */
-				if(key == KeyEvent.VK_Q && key != lastKey) {
+				/* W key = fly up */
+				if(key == KeyEvent.VK_W && key != lastKey && player.is_floating == true) {
 					lastKey = key;
 					if(player.is_floating == true) {
 						player.velY = -3;
 					}
 				}
-				/* E key = Fly Down */
-				if(key == KeyEvent.VK_E && key != lastKey) {
+				/* S key = Fly Down */
+				if(key == KeyEvent.VK_S && key != lastKey && player.is_floating == true) {
 					lastKey = key;
 					if(player.is_floating == true) {
 						player.velY = 3;
@@ -60,7 +60,7 @@ public class KeyInput extends KeyAdapter {
 						jumped = true;
 					}
 				}
-				if(key == KeyEvent.VK_S && key != lastKey && player.is_floating == true) {
+				if(key == KeyEvent.VK_Q && key != lastKey && player.is_floating == true) {
 					lastKey = key;
 					player.setFloating(false);
 					player.setFalling(true);
@@ -99,14 +99,10 @@ public class KeyInput extends KeyAdapter {
 				}
 				if(key == KeyEvent.VK_W) {
 					lastKey = -1;
+					player.setVelY(0);
 				}
 				if(key == KeyEvent.VK_Q) {
 					lastKey = -1;
-					player.setVelY(0);
-				}
-				if(key == KeyEvent.VK_E) {
-					lastKey = -1;
-					player.setVelY(0);
 				}
 				if(key == KeyEvent.VK_A) {
 					player.setVelX(0);
@@ -120,6 +116,7 @@ public class KeyInput extends KeyAdapter {
 				}
 				if(key == KeyEvent.VK_S) {
 					lastKey = -1;
+					player.setVelY(0);
 				}
 				
 				if(keyPressed[0] && !keyPressed[1]) {

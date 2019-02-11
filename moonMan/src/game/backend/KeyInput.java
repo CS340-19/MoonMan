@@ -26,8 +26,10 @@ public class KeyInput extends KeyAdapter {
 				player = (Player) Handler.getObjects().get(i);
 			}
 		}
+			
 			if(player.getID() == ID.Player) {
-				if(key == KeyEvent.VK_SPACE && key != lastKey) {
+				/* Space key = Jump */
+				if(key == KeyEvent.VK_SPACE && key != lastKey && player.is_floating == false) {
 					lastKey = key;
 					if(!player.isJumping() && jumped == false) {
 						player.setJumping(true);
@@ -35,19 +37,35 @@ public class KeyInput extends KeyAdapter {
 						jumped = true;
 					}
 				}
+				/* Q key = fly up */
+				if(key == KeyEvent.VK_Q && key != lastKey) {
+					lastKey = key;
+					if(player.is_floating == true) {
+						player.velY = -3;
+					}
+				}
+				/* E key = Fly Down */
+				if(key == KeyEvent.VK_E && key != lastKey) {
+					lastKey = key;
+					if(player.is_floating == true) {
+						player.velY = 3;
+					}
+				}
+				/* W key = start hovering */
 				if(key == KeyEvent.VK_W && key != lastKey) {
 					lastKey = key;
 					if(player.isIn_air()) {
 						player.setFloating(true);
+						player.firstCall = true;
 						jumped = true;
 					}
 				}
-				if(key == KeyEvent.VK_W && key == lastKey) {
-					if(player.isIn_air() && player.is_floating) {
-						player.is_flying = true;
-						player.velY += 1;
-						
-					}
+				if(key == KeyEvent.VK_S && key != lastKey && player.is_floating == true) {
+					lastKey = key;
+					player.setFloating(false);
+					player.setFalling(true);
+					jumped = true;
+					player.fall();
 				}
 				if(key == KeyEvent.VK_A) {
 					player.setVelX(-5);
@@ -82,6 +100,14 @@ public class KeyInput extends KeyAdapter {
 				if(key == KeyEvent.VK_W) {
 					lastKey = -1;
 				}
+				if(key == KeyEvent.VK_Q) {
+					lastKey = -1;
+					player.setVelY(0);
+				}
+				if(key == KeyEvent.VK_E) {
+					lastKey = -1;
+					player.setVelY(0);
+				}
 				if(key == KeyEvent.VK_A) {
 					player.setVelX(0);
 					player.setWalking(false);
@@ -91,6 +117,9 @@ public class KeyInput extends KeyAdapter {
 					player.setVelX(0);
 					player.setWalking(false);
 					keyPressed[1] = false;
+				}
+				if(key == KeyEvent.VK_S) {
+					lastKey = -1;
 				}
 				
 				if(keyPressed[0] && !keyPressed[1]) {

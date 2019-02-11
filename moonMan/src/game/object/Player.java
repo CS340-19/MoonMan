@@ -37,6 +37,8 @@ public class Player extends GameObject {
 	public Boolean in_air = false;
 	public Boolean is_floating = false;
 	public Boolean is_flying = false;
+	public Boolean firstCall = false;
+	public int secCount = 0;
 	public int walk_sleep_counter = 0;
 	public int which_step = 0;
 	public int w_row = 1;
@@ -107,30 +109,48 @@ public class Player extends GameObject {
 			/* if the floating mechanic has been going for less than 3 seconds 
 			 * set falling false, call the floating animation, and increment the sleep counter
 			 */
-			if(floating_sleep_counter < 180 ) {
-				falling = false;
-				floating_animation();
-				floating_sleep_counter++;
-			}
+			//if(floating_sleep_counter < 180 ) {
+				//falling = false;
+				//if( floating_sleep_counter == 0 ) velY = 0;
+				//floating_animation();
+				//floating_sleep_counter++;
+			//}
 			/* else the player is done floating, 
 			 * reset variables and start a counter for the jetpack cooldown 
 			*/
+			//else {
+				//falling = true;
+				//is_floating = false;
+				//floating_sleep_counter = 0;
+				
+			//}
+		
+			/* Using jet pack fuel and a 30 second timer instead for floating */
+			if( jetpack_fuel > 0 ) {
+				falling = false;
+				if(firstCall == true) velY = 0;
+				if(floating_sleep_counter%60 == 0) secCount++;
+				if(secCount == 3) {
+					jetpack_fuel -= 10;
+					secCount = 0;
+				}
+				firstCall = false;
+				floating_sleep_counter++;
+			}
 			else {
 				falling = true;
 				is_floating = false;
 				floating_sleep_counter = 0;
-				
 			}
-			
 		}
-
 	}
+	
 	
 	/* Dependant on the current floating sleep counter number,
 	 * Set the players y velocity to -1, 0, or 1.
 	 * This has the effect of the player going up and down
 	 */
-	private void floating_animation() {
+	/*private void floating_animation() {
 		if( floating_sleep_counter == 0 ) velY = 0;
 		if( floating_sleep_counter == 3 ) velY = 1;
 		if( floating_sleep_counter == 6 ) velY = -1;
@@ -192,7 +212,7 @@ public class Player extends GameObject {
 		if( floating_sleep_counter == 174 ) velY = 1;
 		if( floating_sleep_counter == 177 ) velY = -1;
 		if( floating_sleep_counter == 180 ) velY = 0;
-	}
+	} */
 
 	public void render(Graphics g, int row, int col ) {
 		
@@ -276,5 +296,8 @@ public class Player extends GameObject {
 	
 	public void setFloating(boolean floating) {
 		this.is_floating = floating;
+	}
+	public void setFalling(boolean falling) {
+		this.falling = falling;
 	}
 }

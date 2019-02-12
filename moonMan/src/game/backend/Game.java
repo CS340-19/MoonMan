@@ -125,6 +125,9 @@ public class Game extends Canvas implements Runnable {
 		if(SplashScreen.done == false) {
 			SplashScreen.tick();
 		}
+		if( state == GameState.MENU) {
+			Menu.tick();
+		}
 	}
 	
 	private void render() {
@@ -160,6 +163,9 @@ public class Game extends Canvas implements Runnable {
 			case OPTIONS:
 				break;
 			case PAUSE:
+				break;
+			case QUIT:
+				stop();
 				break;
 			default:
 				break;

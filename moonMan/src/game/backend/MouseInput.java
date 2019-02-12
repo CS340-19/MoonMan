@@ -20,6 +20,8 @@ public class MouseInput extends MouseAdapter {
 			case MENU:
 				if(rect.intersects(Menu.play)) {
 					Game.state = GameState.GAME;
+				} else if(rect.intersects(Menu.quit)) {
+					Game.state = GameState.QUIT;
 				}
 				break;
 			case OPTIONS:

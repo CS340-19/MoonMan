@@ -5,5 +5,6 @@ public enum GameState {
 	GAME,
 	OPTIONS,
 	SPLASH_SCREEN,
-	PAUSE;
+	PAUSE,
+	QUIT;
 }

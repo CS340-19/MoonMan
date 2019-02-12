@@ -113,7 +113,7 @@ public class SplashScreen extends JFrame{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 		pic = ss.grabImage(w_row, w_col, 100, 100 );
-		g.drawImage(pic, (Game.WIDTH/2)-200, (Game.HEIGHT/2)-200, 400, 400, null);
+		g.drawImage(pic, (Game.WIDTH/2)-300, (Game.HEIGHT/2)-300, 600, 600, null);
 	}
 }
 	

@@ -11,6 +11,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 import game.graphics.BufferedImageLoader;
+import game.graphics.JetPackFuelResolver;
 import game.object.Floor;
 import game.object.ID;
 import game.object.Player;
@@ -28,6 +29,9 @@ public class Game extends Canvas implements Runnable {
 	public BufferedImage mm_plate;
 	public BufferedImage score_plate;
 	public BufferedImage jetpack_plate;
+	public BufferedImage jetpackfuel_plate = null;
+	public BufferedImage jetpackfuel_full_ss = null;
+	public JetPackFuelResolver jetpackfuel_ss = null;
 	public int enemy_offset;
 	private Thread thread;
 	private SplashScreen splashscreen;
@@ -85,6 +89,8 @@ public class Game extends Canvas implements Runnable {
 		mm_plate = loader.loadImage("./src/game/graphics/sprites/MoonManPlate.png");
 		score_plate = loader.loadImage("./src/game/graphics/sprites/Score Plate.png");
 		jetpack_plate = loader.loadImage("./src/game/graphics/sprites/JetPackPlate.png");
+		jetpackfuel_full_ss = loader.loadImage("./src/game/graphics/sprites/JetPackFuelBar_SS.png");
+		jetpackfuel_ss = new JetPackFuelResolver(jetpackfuel_full_ss);
 	}
 	
 	//Main game loop
@@ -128,6 +134,7 @@ public class Game extends Canvas implements Runnable {
 		if( state == GameState.MENU) {
 			Menu.tick();
 		}
+		jetpackfuel_plate = jetpackfuel_ss.grabImage(Player.jf_w, Player.jf_h, 256, 256);
 	}
 	
 	private void render() {
@@ -154,6 +161,7 @@ public class Game extends Canvas implements Runnable {
 				g.drawImage(mm_plate, 0, 0, 128, 128, null);
 				g.drawImage(score_plate, 0, 0, 256, 256, null);
 				g.drawImage(jetpack_plate, 0, 0, 256, 256, null);
+				g.drawImage(jetpackfuel_plate, 0, 0, 256, 256, null);
 				handler.render(g, 1, 1);
 				break;
 			case MENU:

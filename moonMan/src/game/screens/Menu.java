@@ -62,7 +62,7 @@ public class Menu {
 		drawButton(g, quit, "Quit", 165);
 		player = ss.grabImage(w_row, w_col, 64, 64);
 		g.drawImage(player,  Game.WIDTH-480, Game.HEIGHT-280, 256, 256, null);
-		
+				
 	}
 	
 	public static void tick() {

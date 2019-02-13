@@ -47,6 +47,8 @@ public class Player extends GameObject {
 	public int height;
 	public int floating_sleep_counter = 0; /* Needed so that floating only lasts for a set amount of time */
 	public int jetpack_fuel = 100;
+	public static int jf_w = 1;
+	public static int jf_h = 1;
 	
 	public Player(int x, int y, int tmp_width, int tmp_height, ID id) {
 		super(x, y, id);
@@ -65,6 +67,43 @@ public class Player extends GameObject {
 		
 		fall();
 		checkCollision();
+		
+		if(jetpack_fuel > 90 && jetpack_fuel <= 100) {
+			jf_w = 1;
+			jf_h = 1;
+		}else if(jetpack_fuel > 80 && jetpack_fuel <= 90) {
+			jf_w = 2;
+			jf_h = 1;
+		}else if(jetpack_fuel > 70 && jetpack_fuel <= 80) {
+			jf_w = 3;
+			jf_h = 1;
+		}else if(jetpack_fuel > 60 && jetpack_fuel <= 70) {
+			jf_w = 1;
+			jf_h = 2;
+		}else if(jetpack_fuel > 50 && jetpack_fuel <= 60) {
+			jf_w = 2;
+			jf_h = 2;
+		}else if(jetpack_fuel > 40 && jetpack_fuel <= 50) {
+			jf_w = 3;
+			jf_h = 2;
+		}else if(jetpack_fuel > 30 && jetpack_fuel <= 40) {
+			jf_w = 1;
+			jf_h = 3;
+		}else if(jetpack_fuel > 20 && jetpack_fuel <= 30) {
+			jf_w = 2;
+			jf_h = 3;
+		}else if(jetpack_fuel > 10 && jetpack_fuel <= 20) {
+			jf_w = 3;
+			jf_h = 3;
+		}else if(jetpack_fuel > 0 && jetpack_fuel <= 10) {
+			jf_w = 1;
+			jf_h = 4;
+		}else if(jetpack_fuel == 0) {
+			jf_w = 2;
+			jf_h = 4;
+		}
+		
+		
 		
 		if(jumping == true) {
 			in_air = true;
@@ -141,6 +180,7 @@ public class Player extends GameObject {
 				falling = true;
 				is_floating = false;
 				floating_sleep_counter = 0;
+				
 			}
 		}
 	}

@@ -47,6 +47,7 @@ public class Menu {
 		//g.setFont(tempFont);
 		//g.setColor(Color.white);
 		g.drawRect(rect.x, rect.y, rect.width, rect.height);
+		
 		//g.drawString(text, rect.x + offsetX, rect.y + 60);
 	}
 	

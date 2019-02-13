@@ -61,7 +61,8 @@ public class Menu {
 		drawButton(g, options, "Options", 170);
 		drawButton(g, quit, "Quit", 165);
 		player = ss.grabImage(w_row, w_col, 64, 64);
-		g.drawImage(player,  Game.WIDTH-480, Game.HEIGHT-280, 256, 256, null);
+		//g.drawImage(player,  Game.WIDTH-480, Game.HEIGHT-280, 256, 256, null);
+		g.drawImage(player,  (int) (Game.WIDTH/1.27), (int) (Game.HEIGHT/1.5), 256, 256, null);
 				
 	}
 	

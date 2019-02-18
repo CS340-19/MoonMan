@@ -34,6 +34,7 @@ public class SquidMan extends GameObject {
 	public Boolean facing_right = true;
 	public Boolean walking = false;
 	public Boolean in_air = false;
+	public Boolean jumped = false;
 	public int walk_sleep_counter = 0;
 	public int which_step = 0;
 	public int w_row = 1;
@@ -44,6 +45,7 @@ public class SquidMan extends GameObject {
 	public int squidman_y = 0;
 	public int width;
 	public int height;
+	public int jumpTimer = 60;
 	
 	public SquidMan(int x, int y, int tmp_width, int tmp_height, ID id) {
 		super(x, y, id);
@@ -90,11 +92,11 @@ public class SquidMan extends GameObject {
 			squidman.setWalking(false);
 		}
 		else if(squidman_x > player_x && abs( squidman_x - player_x) > 3) {
-			squidman.setVelX(-2);
+			squidman.setVelX(-3);
 			squidman.setFacing_right(false);
 			squidman.setWalking(true);
 		}else if(squidman_x < player_x && abs( squidman_x - player_x) > 3) {
-			squidman.setVelX(2);
+			squidman.setVelX(3);
 			squidman.setFacing_right(true);
 			squidman.setWalking(true);
 		}else {
@@ -102,11 +104,22 @@ public class SquidMan extends GameObject {
 			squidman.setWalking(false);
 		}
 		
-		
+		if( squidman_y > player_y && abs( squidman_x - player_x ) <= 200 && jumped == false ) {
+			if( jumpTimer >= 90 ) {
+				jumping = true;
+				jumped = true;
+				squidman.setVelY(-25);
+				jumpTimer = 0;
+			}
+		}
+		else {
+			jumping = false;
+		}
+		jumpTimer++;
 		
 		if(jumping == true) {
 			in_air = true;
-			walking = false;
+			//walking = false;
 		}else {
 			in_air = false;
 		}
@@ -154,7 +167,7 @@ public class SquidMan extends GameObject {
 		if(in_air == true) {
 			row = 4;
 			col = 4;
-			walking = false;
+			//walking = false;
 		}
 		if(walking == true) {
 			row = w_row;
@@ -182,6 +195,7 @@ public class SquidMan extends GameObject {
 					velY = 0;
 					y = floor.getY() - height;
 					setJumping(false);
+					jumped = false;
 				}
 			}
 		}

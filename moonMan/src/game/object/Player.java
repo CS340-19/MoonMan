@@ -287,6 +287,9 @@ public class Player extends GameObject {
 					velY = 0;
 					y = floor.getY() - height;
 					setJumping(false);
+					in_air = false;
+					is_floating = false;
+					falling = true;
 				}
 			}
 		}

@@ -72,13 +72,16 @@ public class KeyInput extends KeyAdapter {
 					player.setFacing_right(false);
 					player.setWalking(true);
 					keyPressed[0] = true;
+					if(keyPressed[1]) keyPressed[1] = false;
 				}
 				if(key == KeyEvent.VK_D) {
 					player.setVelX(5);
 					player.setFacing_right(true);
 					player.setWalking(true);
 					keyPressed[1] = true;
+					if(keyPressed[0]) keyPressed[0] = false;
 				}
+
 			}
 		
 	}

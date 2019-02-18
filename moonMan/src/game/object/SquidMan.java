@@ -85,11 +85,15 @@ public class SquidMan extends GameObject {
 			squidman_y = squidman.getY();
 		}
 		
-		if(squidman_x > player_x) {
+		if( squidman_x == player_x ) {
+			squidman.setVelX(0);
+			squidman.setWalking(false);
+		}
+		else if(squidman_x > player_x && abs( squidman_x - player_x) > 3) {
 			squidman.setVelX(-2);
 			squidman.setFacing_right(false);
 			squidman.setWalking(true);
-		}else if(squidman_x < player_x) {
+		}else if(squidman_x < player_x && abs( squidman_x - player_x) > 3) {
 			squidman.setVelX(2);
 			squidman.setFacing_right(true);
 			squidman.setWalking(true);
@@ -137,6 +141,12 @@ public class SquidMan extends GameObject {
 			walk_sleep_counter = 0;
 		}
 
+	}
+
+	private int abs(int i) {
+		// TODO Auto-generated method stub
+		if( i >= 0 ) return i;
+		else return i *= -1;
 	}
 
 	public void render(Graphics g, int row, int col ) {

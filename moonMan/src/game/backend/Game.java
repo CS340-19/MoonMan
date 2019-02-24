@@ -63,7 +63,6 @@ public class Game extends Canvas implements Runnable {
 		enemy_offset = random.nextInt(1000) - random.nextInt(1000);
 		Handler.addObject(new SquidMan(WIDTH/2 - 32 - enemy_offset, HEIGHT/2 - 32, 64, 64, ID.Enemy));
 		
-		
 	}
 	
 	//Starts thread for game
@@ -131,7 +130,7 @@ public class Game extends Canvas implements Runnable {
 		if(SplashScreen.done == false) {
 			SplashScreen.tick();
 		}
-		if( state == GameState.MENU) {
+		if(state == GameState.MENU) {
 			Menu.tick();
 		}
 		jetpackfuel_plate = jetpackfuel_ss.grabImage(Player.jf_w, Player.jf_h, 256, 256);

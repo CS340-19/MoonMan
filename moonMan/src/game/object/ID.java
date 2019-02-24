@@ -5,6 +5,7 @@ public enum ID {
 	
 	Player(),
 	Enemy(), 
-	Floor();
+	Floor(),
+	Laser();
 	
 }

@@ -5,9 +5,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import game.object.*;
+import game.object.Laser;
 import game.screens.Menu;
 
 public class MouseInput extends MouseAdapter {
+	
+	public static int los = 1;
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -22,7 +25,10 @@ public class MouseInput extends MouseAdapter {
 							player = (Player) Handler.getObjects().get(i);
 						}
 					}
-					Handler.addObject(new Laser(player.x, player.y, e.getY(), e.getX(), 40, 40, ID.Laser));
+					if(los == 1) {
+						Handler.addObject(new Laser(player.x, player.y, e.getY(), e.getX(), 40, 40, ID.Laser));
+						los = 0;
+					}
 					break;
 				case MENU:
 					break;
@@ -48,7 +54,7 @@ public class MouseInput extends MouseAdapter {
 				case GAME:
 					for(int i = 0; i < Handler.getObjects().size(); i++) {
 						if(Handler.getObjects().get(i).getID() == ID.Laser) {
-							Handler.removeObject(Handler.getObjects().get(i));
+							los = 1;
 						}
 					}
 					break;

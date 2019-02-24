@@ -24,6 +24,7 @@ public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = -6112428091888191314L;
 
 	public static int WIDTH = 1920, HEIGHT = 1080;
+	public static int centerX, centerY;
 	public BufferedImage background;
 	public BufferedImage foreground;
 	public BufferedImage mm_plate;

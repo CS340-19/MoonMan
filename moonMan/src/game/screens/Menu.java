@@ -15,8 +15,10 @@ import game.graphics.SpriteSheetResolver;
 public class Menu {
 
 	public static Rectangle play, options, quit;
-	private static int centerX = Game.WIDTH /2;
+	//private static int centerX = Game.WIDTH /2;
+	//private static int centerY = Game.HEIGHT /2;
 	public static BufferedImage menuBackground = null;
+	public static BufferedImage menuRock = null;
 	public static BufferedImage menuPlay = null;
 	public static BufferedImage menuOptions = null;
 	public static BufferedImage menuQuit = null;
@@ -27,17 +29,19 @@ public class Menu {
 	public static int which_step = 0;
 	public static int w_row = 1;
 	public static int w_col = 1;
+	public static int y = 150;
 	
 	public static void initMenu() {
 		BufferedImageLoader loader = new BufferedImageLoader();
-		int y = 150;
+		
 		menuBackground = loader.loadImage("./src/game/graphics/sprites/MoonBackgroundHiRes_menu.png");
+		menuRock = loader.loadImage("./src/game/graphics/sprites/Rock_menu.png");
 		menuPlay = loader.loadImage("./src/game/graphics/sprites/Play_menu.png");
 		menuOptions = loader.loadImage("./src/game/graphics/sprites/Options_menu.png");
 		menuQuit = loader.loadImage("./src/game/graphics/sprites/Quit_menu.png");
-		play = new Rectangle(centerX -235, y + 150, 500, 100);
-		options = new Rectangle(centerX - 380, y+=310, 800, 100);
-		quit = new Rectangle(centerX -250, y+=160, 500, 100);
+		play = new Rectangle(Game.centerX -235, Game.centerY -240, 500, 100);
+		options = new Rectangle(Game.centerX - 380, Game.centerY - 80, 800, 100);
+		quit = new Rectangle(Game.centerX -250, Game.centerY + 80, 500, 100);
 		player_ss = loader.loadImage("./src/game/graphics/sprites/MoonManMenu_SS.png");
 		ss = new SpriteSheetResolver(player_ss);
 	}
@@ -45,9 +49,8 @@ public class Menu {
 	public static void drawButton(Graphics g, Rectangle rect, String text, int offsetX) {
 		//Font tempFont = new Font("Bauhaus 93", Font.BOLD, 48);
 		//g.setFont(tempFont);
-		//g.setColor(Color.white);
-		g.drawRect(rect.x, rect.y, rect.width, rect.height);
-		
+		g.setColor(Color.black);
+		g.drawRect(rect.x, rect.y, rect.width, rect.height);	
 		//g.drawString(text, rect.x + offsetX, rect.y + 60);
 	}
 	
@@ -55,15 +58,16 @@ public class Menu {
 		//g.setColor(Color.DARK_GRAY);
 		//g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 		g.drawImage(menuBackground, 0, 0, Game.WIDTH, Game.HEIGHT, null);
-		g.drawImage(menuPlay, 0, 0, Game.WIDTH, Game.HEIGHT, null);
-		g.drawImage(menuOptions, 0, 0, Game.WIDTH, Game.HEIGHT, null);
-		g.drawImage(menuQuit, 0, 0, Game.WIDTH, Game.HEIGHT, null);
+		g.drawImage(menuRock, Game.WIDTH-(250*3), Game.HEIGHT-(60*3), 250*3, 60*3, null);
+		g.drawImage(menuPlay, Game.centerX - 235, Game.centerY - 240, 500, 100, null);
+		g.drawImage(menuOptions, Game.centerX-380, Game.centerY - 80, 800, 100, null);
+		g.drawImage(menuQuit, Game.centerX-250, Game.centerY + 80, 500, 100, null);
 		drawButton(g, play, "Play", 165);
 		drawButton(g, options, "Options", 170);
 		drawButton(g, quit, "Quit", 165);
 		player = ss.grabImage(w_row, w_col, 64, 64);
 		//g.drawImage(player,  Game.WIDTH-480, Game.HEIGHT-280, 256, 256, null);
-		g.drawImage(player,  (int) (Game.WIDTH/1.27), (int) (Game.HEIGHT/1.5), 256, 256, null);
+		g.drawImage(player, Game.WIDTH-(250*3/2), Game.HEIGHT-(60*5), 256, 256, null);
 				
 	}
 	

@@ -7,7 +7,8 @@ import game.object.ID;
 //seems like an interface from C++
 public abstract class GameObject {
 	
-	protected int x, y;
+	protected int x;
+	protected int y;
 	protected ID id;
 	protected int velX, velY;	//control speed in x, y direction
 	protected int width;

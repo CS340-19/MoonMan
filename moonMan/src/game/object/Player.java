@@ -49,9 +49,11 @@ public class Player extends GameObject {
 	public int jetpack_fuel = 100;
 	public static int jf_w = 1;
 	public static int jf_h = 1;
+	public static int X = 0;
 	
 	public Player(int x, int y, int tmp_width, int tmp_height, ID id) {
 		super(x, y, id);
+		X = x;
 		width = tmp_width;
 		height = tmp_height;
 	
@@ -63,6 +65,7 @@ public class Player extends GameObject {
 	
 	public void tick() {
 		x += velX;
+		X = x;
 		y += velY;
 		
 		fall();
@@ -304,6 +307,14 @@ public class Player extends GameObject {
 	public Rectangle getBottomBounds() {
 		return new Rectangle(x, y + height/2, 30, height/2);
 	}
+	
+	//public Rectangle getRightBounds( ) {
+	//	return new Rectangle(x + width/2, y, width/2, 30);
+	//}
+	
+	//public Rectangle getLeftBounds( ) {
+	//	return new Rectangle(x - width/2, y, width/2, 30);
+	//}
 
 	public Boolean isJumping() {
 		return jumping;

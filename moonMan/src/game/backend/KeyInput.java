@@ -3,6 +3,7 @@ package game.backend;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import game.object.Foreground;
 import game.object.ID;
 import game.object.Player;
 
@@ -68,14 +69,24 @@ public class KeyInput extends KeyAdapter {
 					player.fall();
 				}
 				if(key == KeyEvent.VK_A) {
-					player.setVelX(-5);
+					Foreground.checkCollision();
+					if(Foreground.getLeftBounds().intersects(player.getBottomBounds())) {
+						player.setVelX(0);
+					}else {
+						player.setVelX(-5);
+					}
 					player.setFacing_right(false);
 					player.setWalking(true);
 					keyPressed[0] = true;
 					if(keyPressed[1]) keyPressed[1] = false;
 				}
 				if(key == KeyEvent.VK_D) {
-					player.setVelX(5);
+					Foreground.checkCollision();
+					if(Foreground.getRightBounds().intersects(player.getBottomBounds())) {
+						player.setVelX(0);
+					}else {
+						player.setVelX(5);
+					}
 					player.setFacing_right(true);
 					player.setWalking(true);
 					keyPressed[1] = true;

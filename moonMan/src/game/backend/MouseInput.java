@@ -26,7 +26,7 @@ public class MouseInput extends MouseAdapter {
 						}
 					}
 					if(los == 1) {
-						Handler.addObject(new Laser(player.x, player.y, e.getY(), e.getX(), 40, 40, ID.Laser));
+						Handler.addObject(new Laser(player.x, player.y - 40, e.getY(), e.getX(), 10, 10, ID.Laser));
 						los = 0;
 					}
 					break;

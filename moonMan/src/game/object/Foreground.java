@@ -10,7 +10,6 @@ import game.backend.Handler;
 import game.graphics.BufferedImageLoader;
 
 public class Foreground extends GameObject{
-
 	public static BufferedImage foreground1 = null;
 	public static BufferedImage foreground2 = null;
 	public static BufferedImage foreground3 = null;

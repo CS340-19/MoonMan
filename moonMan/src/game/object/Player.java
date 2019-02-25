@@ -21,7 +21,7 @@ import game.graphics.SpriteSheetResolver;
 public class Player extends GameObject {
 	
 	private static LinkedList<GameObject> floorBlocks = Handler.getObjects();
-	
+
 	public static final int WIDTH = 1280, HEIGHT = 720;	
 	public BufferedImage moonMan_ss = null;
 	public BufferedImage moonMan = null;

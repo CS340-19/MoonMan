@@ -19,7 +19,7 @@ public class Laser extends GameObject{
 		Laser.mouseX = mouseX;
 		Laser.mouseY = mouseY;
 		
-		image = loader.loadImage("./src/game/graphics/sprites/HoodMan.png");
+		image = loader.loadImage("./src/game/graphics/sprites/Laser MM.png");
 		
 		speed = 25;
 		angle = Math.atan2(mouseX - x, mouseY - y);

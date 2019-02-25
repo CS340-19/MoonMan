@@ -11,7 +11,6 @@ public class KeyInput extends KeyAdapter {
 
 	private Boolean[] keyPressed = new Boolean[2];
 	Player player;
-
 	public KeyInput(Handler handler) {
 
 	}

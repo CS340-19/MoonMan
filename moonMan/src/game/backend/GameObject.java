@@ -6,7 +6,6 @@ import game.object.ID;
 //abstract type for any game object, player, enemy, etc..
 //seems like an interface from C++
 public abstract class GameObject {
-	
 	protected int x;
 	protected int y;
 	protected ID id;

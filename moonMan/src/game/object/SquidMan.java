@@ -29,27 +29,35 @@ public class SquidMan extends GameObject {
 	public SpriteSheetResolver ss;
 	private Floor floor;
 	Random r = new Random();
-	private Boolean jumping = false;
-	private Boolean falling = true;
-	public int gravity = 1;
-	public Boolean facing_right = true;
-	public Boolean walking = false;
-	public Boolean in_air = false;
-	public Boolean jumped = false;
-	public int walk_sleep_counter = 0;
-	public int which_step = 0;
-	public int w_row = 1;
-	public int w_col = 1;
-	public int player_x = 0;
-	public int player_y = 0;
-	public int squidman_x = 0;
-	public int squidman_y = 0;
-	public int width;
-	public int height;
-	public int jumpTimer = 60;
+	private static Boolean jumping = false;
+	private static Boolean falling = true;
+	public static int gravity = 1;
+	public static Boolean facing_right = true;
+	public static Boolean walking = false;
+	public static Boolean in_air = false;
+	public static Boolean jumped = false;
+	public static int walk_sleep_counter = 0;
+	public static int which_step = 0;
+	public static int w_row = 1;
+	public static int w_col = 1;
+	public static int player_x = 0;
+	public static int player_y = 0;
+	public static int squidman_x = 0;
+	public static int squidman_y = 0;
+	public static int width;
+	public static int height;
+	public static int jumpTimer = 60;
+	private static int x_save;
+	private static int y_save;
+	private static int width_save;
+	private static int height_save;
 	
 	public SquidMan(int x, int y, int tmp_width, int tmp_height, ID id) {
 		super(x, y, id);
+		x_save = x;
+		y_save = y;
+		width_save = tmp_width;
+		height_save = tmp_height;
 		width = tmp_width;
 		height = tmp_height;
 	
@@ -57,6 +65,29 @@ public class SquidMan extends GameObject {
 		squidMan_ss = loader.loadImage("./src/game/graphics/sprites/SquidMan_SS.png");
 		ss = new SpriteSheetResolver(squidMan_ss);
 		
+	}
+	
+	public void reset() {
+		x = x_save;
+		y = y_save;
+		jumping = false;
+		falling = true;
+		gravity = 1;
+		facing_right = true;
+		walking = false;
+		in_air = false;
+		jumped = false;
+		walk_sleep_counter = 0;
+		which_step = 0;
+		w_row = 1;
+		w_col = 1;
+		player_x = 0;
+		player_y = 0;
+		squidman_x = 0;
+		squidman_y = 0;
+		width = width_save;
+		height = height_save;
+		jumpTimer = 60;
 	}
 	
 	public void tick() {

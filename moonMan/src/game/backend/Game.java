@@ -15,6 +15,7 @@ import game.graphics.JetPackFuelResolver;
 import game.object.Floor;
 import game.object.Foreground;
 import game.object.ID;
+import game.object.Laser;
 import game.object.Player;
 import game.object.SquidMan;
 import game.screens.Menu;
@@ -65,9 +66,9 @@ public class Game extends Canvas implements Runnable {
 		Handler.addObject(new Foreground(0, 0, ID.ForeGround));
 		Handler.addObject(new Player(150, HEIGHT-100, 64, 64, ID.Player));
 		Random random = new Random();
-		enemy_offset = random.nextInt(1000)-random.nextInt(1000);
-		//Handler.addObject(new SquidMan(WIDTH/2 - 32 - enemy_offset, HEIGHT/2 - 32, 64, 64, ID.Enemy));
-		Handler.addObject(new SquidMan(1800, HEIGHT/2 - 32, 64, 64, ID.Enemy));
+		enemy_offset = random.nextInt(WIDTH/2);
+		Handler.addObject(new SquidMan(centerX - 32 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
+		//Handler.addObject(new SquidMan(1800, HEIGHT/2 - 32, 64, 64, ID.Enemy));
 		
 	}
 	
@@ -139,6 +140,13 @@ public class Game extends Canvas implements Runnable {
 		}
 		if(state == GameState.MENU) {
 			Menu.tick();
+		}
+		if(state == GameState.GAME) {
+			if(Laser.enemyKilled) {
+				Random random = new Random();
+				enemy_offset = random.nextInt(WIDTH/2);
+				Handler.addObject(new SquidMan(centerX - 32 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
+			}
 		}
 		jetpackfuel_plate = jetpackfuel_ss.grabImage(Player.jf_w, Player.jf_h, 256, 256);
 	}

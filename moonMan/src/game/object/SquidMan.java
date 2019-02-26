@@ -1,4 +1,5 @@
 package game.object;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
@@ -194,6 +195,8 @@ public class SquidMan extends GameObject {
 			squidMan = op.filter(squidMan, null);	
 		}	
 		g.drawImage(squidMan,  x, y - 25, 128, 128, null);
+		g.setColor(Color.white);
+		g.drawRect(x + 35, y - 5, 60, 87);
 	}
 	
 	private void checkCollision() {
@@ -217,7 +220,7 @@ public class SquidMan extends GameObject {
 	}
 	
 	public Rectangle getBottomBounds() {
-		return new Rectangle(x, y + height/2, 30, height/2);
+		return new Rectangle(x, y - 10, 70, 87);
 	}
 
 	public Boolean isJumping() {

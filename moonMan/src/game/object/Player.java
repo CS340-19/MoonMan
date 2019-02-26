@@ -13,7 +13,9 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import game.backend.Game;
 import game.backend.GameObject;
+import game.backend.GameState;
 import game.backend.Handler;
 import game.graphics.BufferedImageLoader;
 import game.graphics.SpriteSheetResolver;
@@ -320,6 +322,7 @@ public class Player extends GameObject {
 		g.drawImage(moonMan,  x, y -20, 128, 128, null);
 	}
 	
+	
 	private void checkCollision() {
 		for(GameObject obj : floorBlocks) {
 			if(obj.getID() == ID.Floor) {
@@ -331,6 +334,14 @@ public class Player extends GameObject {
 					in_air = false;
 					is_floating = false;
 					falling = true;
+				}
+			}
+		}
+		for(int i = 0; i < Handler.getObjects().size(); i++) {
+			if(Handler.getObjects().get(i).getID() == ID.Enemy) {
+				squidman = (SquidMan) Handler.getObjects().get(i);
+				if(getBottomBounds().intersects(squidman.getBottomBounds())) {
+					Game.state = GameState.MENU;
 				}
 			}
 		}

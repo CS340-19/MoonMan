@@ -1,6 +1,9 @@
 package game.object;
 import game.backend.GameObject;
+import game.backend.Handler;
+
 import java.lang.Math;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -13,6 +16,7 @@ public class Laser extends GameObject{
 	BufferedImageLoader loader = new BufferedImageLoader();
 	BufferedImage image;
 	double angle, speed;
+	SquidMan squidman;
 	
 	public Laser(int x, int y, int mouseY, int mouseX, int width, int height, ID id) {
 		super(x, y, id);
@@ -28,12 +32,30 @@ public class Laser extends GameObject{
 	}
 	
 	public void tick() {
+		checkCollision();
 		x += velX;
 		y += velY;
 		
 	}
+	
+	private void checkCollision() {
+		for(int i = 0; i < Handler.getObjects().size(); i++) {
+			if(Handler.getObjects().get(i).getID() == ID.Enemy) {
+				squidman = (SquidMan) Handler.getObjects().get(i);
+				if(getBottomBounds().intersects(squidman.getBottomBounds())) {
+					Handler.removeObject(squidman);
+				}
+			}
+		}
+	}
+	
+	public Rectangle getBottomBounds() {
+		return new Rectangle(x + 110, y + 60, 20, 10);
+	}
 
 	public void render(Graphics g, int row, int col) {
 		g.drawImage(image, x, y, 128, 128, null);
+		//g.setColor(Color.white);
+		//g.drawRect(x + 110, y + 60, 20, 10);
 	}
 }

@@ -22,7 +22,6 @@ public class Player extends GameObject {
 	
 	private static LinkedList<GameObject> floorBlocks = Handler.getObjects();
 
-	public static final int WIDTH = 1280, HEIGHT = 720;	
 	public BufferedImage moonMan_ss = null;
 	public BufferedImage moonMan = null;
 	public SpriteSheetResolver ss;
@@ -51,10 +50,20 @@ public class Player extends GameObject {
 	public static int jf_h = 1;
 	public static int X = 0;
 	public static boolean stay = false;
+	private int x_save;
+	private int y_save;
+	private ID id_save;
+	private int width_save;
+	private int height_save;
 	
 	public Player(int x, int y, int tmp_width, int tmp_height, ID id) {
 		super(x, y, id);
 		X = x;
+		x_save = x;
+		y_save = y;
+		id_save = id;
+		width_save = tmp_width;
+		height_save = tmp_height;
 		width = tmp_width;
 		height = tmp_height;
 	
@@ -62,6 +71,34 @@ public class Player extends GameObject {
 		moonMan_ss = loader.loadImage("./src/game/graphics/sprites/MoonMan_SS.png");
 		ss = new SpriteSheetResolver(moonMan_ss);
 		
+	}
+	
+	public void reset( ) {
+		x = x_save;
+		y = y_save;
+		id = id_save;
+		jumping = false;
+		falling = true;
+		gravity = 1;
+		facing_right = true;
+		walking = false;
+		in_air = false;
+		is_floating = false;
+		is_flying = false;
+		firstCall = false;
+		secCount = 0;
+		walk_sleep_counter = 0;
+		which_step = 0;
+		w_row = 1;
+		w_col = 1;
+		width = width_save;
+		height = height_save;
+		floating_sleep_counter = 0; /* Needed so that floating only lasts for a set amount of time */
+		jetpack_fuel = 100;
+		jf_w = 1;
+		jf_h = 1;
+		X = x;
+		stay = false;
 	}
 	
 	public void tick() {

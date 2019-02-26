@@ -111,7 +111,7 @@ public class SquidMan extends GameObject {
 			squidman.setVelX(0);
 			squidman.setWalking(false);
 		}
-		
+		/*
 		if( squidman_y > player_y && abs( squidman_x - player_x ) <= 200 && jumped == false ) {
 			if( jumpTimer >= 90 ) {
 				jumping = true;
@@ -131,6 +131,7 @@ public class SquidMan extends GameObject {
 		}else {
 			in_air = false;
 		}
+		*/
 
 		if(walking == true) {
 			if(walk_sleep_counter == 0) {

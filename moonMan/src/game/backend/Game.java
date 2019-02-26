@@ -43,6 +43,7 @@ public class Game extends Canvas implements Runnable {
 	public static GameState state = GameState.SPLASH_SCREEN;
 	public static int Right_MW = centerX + (int) ((WIDTH/1.5)/2);
 	public static int Left_MW = centerX - (int) ((WIDTH/1.5)/2);
+	public static boolean Pause = false;
 	//public static GameState state = GameState.MENU;
 	
 	
@@ -62,7 +63,7 @@ public class Game extends Canvas implements Runnable {
 		
 		this.addKeyListener(new KeyInput(handler));
 		Handler.addObject(new Foreground(0, 0, ID.ForeGround));
-		Handler.addObject(new Player(150, 150, 64, 64, ID.Player));
+		Handler.addObject(new Player(150, HEIGHT-100, 64, 64, ID.Player));
 		Random random = new Random();
 		enemy_offset = random.nextInt(1000)-random.nextInt(1000);
 		//Handler.addObject(new SquidMan(WIDTH/2 - 32 - enemy_offset, HEIGHT/2 - 32, 64, 64, ID.Enemy));
@@ -164,11 +165,11 @@ public class Game extends Canvas implements Runnable {
 				g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
 				//g.setColor(Color.white);
 				//g.drawRect(centerX - (int) ((WIDTH/1.3)/2), 0, (int) (WIDTH/1.3), HEIGHT);
-				g.drawImage(Foreground.foreground1, Foreground.X, Foreground.Y, WIDTH, HEIGHT, null);
-				g.drawImage(Foreground.foreground2, Foreground.X+WIDTH, Foreground.Y, WIDTH, HEIGHT, null);
-				g.drawImage(Foreground.foreground3, Foreground.X+(WIDTH*2), Foreground.Y, WIDTH, HEIGHT, null);
-				g.drawImage(Foreground.foreground4, Foreground.X+(WIDTH*3), Foreground.Y, WIDTH, HEIGHT, null);
-				g.drawImage(Foreground.foreground5, Foreground.X+(WIDTH*4), Foreground.Y, WIDTH, HEIGHT, null);
+				g.drawImage(Foreground.foreground1, Foreground.X, Foreground.Y-47, WIDTH, HEIGHT, null);
+				g.drawImage(Foreground.foreground2, Foreground.X+WIDTH, Foreground.Y-47, WIDTH, HEIGHT, null);
+				g.drawImage(Foreground.foreground3, Foreground.X+(WIDTH*2), Foreground.Y-47, WIDTH, HEIGHT, null);
+				g.drawImage(Foreground.foreground4, Foreground.X+(WIDTH*3), Foreground.Y-47, WIDTH, HEIGHT, null);
+				g.drawImage(Foreground.foreground5, Foreground.X+(WIDTH*4), Foreground.Y-47, WIDTH, HEIGHT, null);
 				g.drawImage(ship, centerX-(WIDTH/2)+Foreground.X, HEIGHT-576, 256, 512, null);
 				g.drawImage(mm_plate, 0, 0, 128, 128, null);
 				g.drawImage(score_plate, 0, 0, 256, 256, null);

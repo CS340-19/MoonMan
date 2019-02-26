@@ -5,7 +5,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import game.object.*;
-import game.object.Laser;
 import game.screens.Menu;
 
 public class MouseInput extends MouseAdapter {
@@ -63,6 +62,16 @@ public class MouseInput extends MouseAdapter {
 				case MENU:
 					if(rect.intersects(Menu.play)) {
 						Game.state = GameState.GAME;
+						for(int i = 0; i < Handler.getObjects().size(); i++) {
+							if(Handler.getObjects().get(i).getID() == ID.Player) {
+								Player player = (Player) Handler.getObjects().get(i);
+								player.reset();
+							}
+							if(Handler.getObjects().get(i).getID() == ID.ForeGround) {
+								Foreground foreground = (Foreground) Handler.getObjects().get(i);
+								foreground.reset();
+							}
+						}
 					} else if(rect.intersects(Menu.quit)) {
 						Game.state = GameState.QUIT;
 					}

@@ -10,17 +10,19 @@ public class Handler {
 	
 	//loops through list
 	public void tick() {
-		for(int i = 0; i < objects.size(); i++) {
-			GameObject object = objects.get(i);
-			object.tick();
+		if(Game.Pause == false) {
+			for(int i = 0; i < objects.size(); i++) {
+				GameObject object = objects.get(i);
+				object.tick();
+			}
 		}
 	}
 	
 	public void render(Graphics g, int row, int col) {
-		for(int i = 0; i < objects.size(); i++) {
-			GameObject object = objects.get(i);
-			object.render(g, row, col);
-		}
+			for(int i = 0; i < objects.size(); i++) {
+				GameObject object = objects.get(i);
+				object.render(g, row, col);
+			}
 	}
 	
 	public static void addObject(GameObject object) {

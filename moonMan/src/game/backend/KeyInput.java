@@ -103,6 +103,12 @@ public class KeyInput extends KeyAdapter {
 					keyPressed[1] = true;
 					if(keyPressed[0]) keyPressed[0] = false;
 				}
+				if(key == KeyEvent.VK_ESCAPE) {
+					if(Game.Pause == false) {
+						Game.Pause = true;
+					}else Game.Pause =false;
+					
+				}
 
 			}
 		

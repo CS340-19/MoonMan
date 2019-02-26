@@ -69,10 +69,15 @@ public class KeyInput extends KeyAdapter {
 				}
 				if(key == KeyEvent.VK_A) {
 					Foreground.checkCollision();
-					if(Foreground.getLeftBounds().intersects(player.getBottomBounds())) {
+					if((Foreground.getLeftBounds().intersects(player.getBottomBounds())) && Foreground.Begining == false) {
 						player.setVelX(0);
-					}else {
+						player.stay = true;
+					}else if((Foreground.getBeginingBounds().intersects(player.getBottomBounds())) && Foreground.Begining == true) {
+						player.setVelX(0);
+						player.stay = false;
+					}else{
 						player.setVelX(-5);
+						player.stay = false;
 					}
 					player.setFacing_right(false);
 					player.setWalking(true);
@@ -81,11 +86,18 @@ public class KeyInput extends KeyAdapter {
 				}
 				if(key == KeyEvent.VK_D) {
 					Foreground.checkCollision();
-					if(Foreground.getRightBounds().intersects(player.getBottomBounds())) {
+					if((Foreground.getRightBounds().intersects(player.getBottomBounds())) && Foreground.Ending == false) {
 						player.setVelX(0);
+						player.stay = true;
+					}else if((Foreground.getEndingBounds().intersects(player.getBottomBounds())) && Foreground.Ending == true) {
+						Game.state = GameState.MENU;
+						//player.setVelX(0);
+						//player.stay = false;
 					}else {
 						player.setVelX(5);
+						player.stay = false;
 					}
+					
 					player.setFacing_right(true);
 					player.setWalking(true);
 					keyPressed[1] = true;

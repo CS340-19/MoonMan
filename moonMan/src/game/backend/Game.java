@@ -62,10 +62,11 @@ public class Game extends Canvas implements Runnable {
 		
 		this.addKeyListener(new KeyInput(handler));
 		Handler.addObject(new Foreground(0, 0, ID.ForeGround));
-		Handler.addObject(new Player(WIDTH/2 - 32, HEIGHT/2 - 32, 64, 64, ID.Player));
+		Handler.addObject(new Player(150, 150, 64, 64, ID.Player));
 		Random random = new Random();
-		enemy_offset = random.nextInt(1000) - random.nextInt(1000);
-		Handler.addObject(new SquidMan(WIDTH/2 - 32 - enemy_offset, HEIGHT/2 - 32, 64, 64, ID.Enemy));
+		enemy_offset = random.nextInt(1000)-random.nextInt(1000);
+		//Handler.addObject(new SquidMan(WIDTH/2 - 32 - enemy_offset, HEIGHT/2 - 32, 64, 64, ID.Enemy));
+		Handler.addObject(new SquidMan(1800, HEIGHT/2 - 32, 64, 64, ID.Enemy));
 		
 	}
 	

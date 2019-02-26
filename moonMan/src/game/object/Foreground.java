@@ -1,5 +1,6 @@
 package game.object;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -21,6 +22,10 @@ public class Foreground extends GameObject{
 	public static int Y = 0;
 	public static int totalWidth = Game.WIDTH*5;
 	public static int whereYourAt = 0;
+	public static boolean Begining = true;
+	public static boolean Ending = false;
+	public static boolean LeftWall = false;
+	public static boolean RightWalli = false;
 	
 	public Foreground(int x, int y, ID id) {
 		super(x, y, id);
@@ -41,22 +46,36 @@ public class Foreground extends GameObject{
 	}
 
 	@Override
-	public void render(Graphics g, int row, int col) {		
+	public void render(Graphics g, int row, int col) {	
+		g.setColor(Color.white);
+		g.drawRect((totalWidth)-whereYourAt, 0, 20, Game.HEIGHT);
 	}
 	
 	public static void checkCollision() {
 		for(int i = 0; i < Handler.getObjects().size(); i++) {
 			if(Handler.getObjects().get(i).getID() == ID.Player) {
 				Player player = (Player) Handler.getObjects().get(i);
+				if(whereYourAt <= 0) {
+					Begining = true;
+					Ending = false;
+				}else {
+					Begining = false;
+				}
+				if(whereYourAt >= totalWidth-1520) {
+					Ending = true;
+					Begining = false;
+				}else {
+					Ending = false;
+				}
 				if(getLeftBounds().intersects(player.getBottomBounds())) {
-					if(Player.X+whereYourAt > (int)(Game.WIDTH/10)) {
+					if((Player.X+whereYourAt > (int)(Game.WIDTH/10)) && Begining == false) {
 						X += 7;
 						whereYourAt -= 7;
 						//System.out.println("whereYourAT: " + whereYourAt + "   total: " + Player.X+whereYourAt);
 					}
 					
 				}else if(getRightBounds().intersects(player.getBottomBounds())) {
-					if(Player.X+whereYourAt < totalWidth-(int)(Game.WIDTH/6.5)) {
+					if((Player.X+whereYourAt < totalWidth-(int)(Game.WIDTH/6.5)) && Ending == false) {
 						X -= 7;
 						whereYourAt += 7;
 						//System.out.println("whereYourAT: " + whereYourAt + "   total: " + Player.X+whereYourAt);
@@ -66,12 +85,20 @@ public class Foreground extends GameObject{
 		}
 	}
 	
+	public static Rectangle getBeginingBounds( ) {
+		return new Rectangle(0, 0, 20, Game.HEIGHT);
+	}
+	
+	public static Rectangle getEndingBounds( ) {
+		return new Rectangle((totalWidth)-whereYourAt, 0, 20, Game.HEIGHT);
+	}
+	
 	public static Rectangle getLeftBounds() {
-		return new Rectangle(Game.centerX - (int) ((Game.WIDTH/1.3)/2)-32, 0, 2, Game.HEIGHT);
+		return new Rectangle(Game.centerX - (int) ((Game.WIDTH/1.3)/2)-32, 0, 20, Game.HEIGHT);
 	}
 	
 	public static Rectangle getRightBounds() {
-		return new Rectangle(Game.centerX + (int) ((Game.WIDTH/1.3)/2)-64, 0, 2, Game.HEIGHT);
+		return new Rectangle(Game.centerX + (int) ((Game.WIDTH/1.3)/2)-64, 0, 20, Game.HEIGHT);
 	}
 
 }

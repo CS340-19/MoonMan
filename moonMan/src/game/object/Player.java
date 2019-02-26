@@ -50,6 +50,7 @@ public class Player extends GameObject {
 	public static int jf_w = 1;
 	public static int jf_h = 1;
 	public static int X = 0;
+	public static boolean stay = false;
 	
 	public Player(int x, int y, int tmp_width, int tmp_height, ID id) {
 		super(x, y, id);

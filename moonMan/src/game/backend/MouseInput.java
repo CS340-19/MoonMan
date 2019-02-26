@@ -38,6 +38,8 @@ public class MouseInput extends MouseAdapter {
 					break;
 				case SPLASH_SCREEN:
 					break;
+				case QUIT:
+					break;
 				default:
 					break;
 			}
@@ -70,6 +72,8 @@ public class MouseInput extends MouseAdapter {
 				case PAUSE:
 					break;
 				case SPLASH_SCREEN:
+					break;
+				case QUIT:
 					break;
 				default:
 					break;

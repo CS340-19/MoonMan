@@ -13,6 +13,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import game.backend.Game;
 import game.backend.GameObject;
 import game.backend.Handler;
 import game.graphics.BufferedImageLoader;
@@ -22,7 +23,6 @@ public class SquidMan extends GameObject {
 	
 	private static LinkedList<GameObject> floorBlocks = Handler.getObjects();
 	
-	public static final int WIDTH = 1920, HEIGHT = 1080;	
 	public BufferedImage squidMan_ss = null;
 	public BufferedImage squidMan = null;
 	public SpriteSheetResolver ss;
@@ -92,11 +92,19 @@ public class SquidMan extends GameObject {
 			squidman.setWalking(false);
 		}
 		else if(squidman_x > player_x && abs( squidman_x - player_x) > 3) {
-			squidman.setVelX(-3);
+			if(player.stay) {
+				squidman.setVelX(1);
+			}else {
+				squidman.setVelX(-3);
+			}
 			squidman.setFacing_right(false);
 			squidman.setWalking(true);
 		}else if(squidman_x < player_x && abs( squidman_x - player_x) > 3) {
-			squidman.setVelX(3);
+			if(player.stay) {
+				squidman.setVelX(-1);
+			}else {
+				squidman.setVelX(3);
+			}
 			squidman.setFacing_right(true);
 			squidman.setWalking(true);
 		}else {

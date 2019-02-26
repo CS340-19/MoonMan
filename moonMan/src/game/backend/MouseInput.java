@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 
 import game.object.*;
 import game.screens.Menu;
+import game.screens.Pause;
 
 public class MouseInput extends MouseAdapter {
 	
@@ -79,10 +80,24 @@ public class MouseInput extends MouseAdapter {
 				case OPTIONS:
 					break;
 				case PAUSE:
+					if(rect.intersects(Menu.play)) {
+						Game.state = GameState.GAME;
+						for(int i = 0; i < Handler.getObjects().size(); i++) {
+							if(Handler.getObjects().get(i).getID() == ID.Pause) {
+								Pause pause = (Pause) Handler.getObjects().get(i);
+								Handler.removeObject(pause);
+							}
+						}
+						Game.Pause =false;
+						Game.state = GameState.GAME;
+					} else if(rect.intersects(Menu.quit)) {
+						Game.state = GameState.QUIT;
+					}
 					break;
 				case SPLASH_SCREEN:
 					break;
 				case QUIT:
+					System.exit(0);
 					break;
 				default:
 					break;

@@ -6,6 +6,7 @@ public enum ID {
 	Enemy(), 
 	Floor(),
 	Laser(),
-	ForeGround();
+	ForeGround(),
+	Pause();
 	
 }

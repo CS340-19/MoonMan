@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import game.object.Foreground;
 import game.object.ID;
 import game.object.Player;
+import game.screens.Pause;
 
 public class KeyInput extends KeyAdapter {
 
@@ -106,7 +107,9 @@ public class KeyInput extends KeyAdapter {
 				if(key == KeyEvent.VK_ESCAPE) {
 					if(Game.Pause == false) {
 						Game.Pause = true;
-					}else Game.Pause =false;
+						Handler.addObject(new Pause(Game.centerX, Game.centerY, ID.Pause));
+						Game.state = GameState.PAUSE;
+					}
 					
 				}
 

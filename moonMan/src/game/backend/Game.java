@@ -41,11 +41,12 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private boolean imageLoaded = false;
 	private Handler handler;
-	//public static GameState state = GameState.SPLASH_SCREEN;
+	public static GameState state = GameState.SPLASH_SCREEN;
 	public static int Right_MW = centerX + (int) ((WIDTH/1.5)/2);
 	public static int Left_MW = centerX - (int) ((WIDTH/1.5)/2);
 	public static boolean Pause = false;
-	public static GameState state = GameState.MENU;
+	public static int Score = 0;
+	//public static GameState state = GameState.MENU;
 	
 	
 	public Game() {
@@ -143,17 +144,9 @@ public class Game extends Canvas implements Runnable {
 		}
 		if(state == GameState.GAME) {
 			if(Laser.enemyKilled) {
-				for(int i = 0; i < Handler.getObjects().size(); i++) {
-					if(Handler.getObjects().get(i).getID() == ID.Laser ) {
-						if (Handler.getObjects().get(i).remove_me == 1) {
-							Handler.removeObject(Handler.getObjects().get(i));
-						}
-					}
-				}
 				Random random = new Random();
 				enemy_offset = random.nextInt(WIDTH/2);
 				Handler.addObject(new SquidMan(centerX - 32 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
-				Laser.enemyKilled = false;
 			}
 		}
 		jetpackfuel_plate = jetpackfuel_ss.grabImage(Player.jf_w, Player.jf_h, 256, 256);

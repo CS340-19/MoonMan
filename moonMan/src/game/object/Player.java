@@ -1,4 +1,5 @@
 package game.object;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
@@ -252,6 +253,8 @@ public class Player extends GameObject {
 			moonMan = op.filter(moonMan, null);	
 		}	
 		g.drawImage(moonMan,  x, y -20, 128, 128, null);
+		g.setColor(Color.white);
+		g.drawRect(x + 30, y - 10, 60, 87);
 	}
 	
 	
@@ -286,7 +289,7 @@ public class Player extends GameObject {
 	}
 	
 	public Rectangle getBottomBounds() {
-		return new Rectangle(x, y + height/2, 30, height/2);
+		return new Rectangle(x + 30, y - 10, 60, 87);
 	}
 	
 	//public Rectangle getRightBounds( ) {

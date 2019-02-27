@@ -17,7 +17,7 @@ public class Laser extends GameObject{
 	BufferedImage image;
 	double angle, speed;
 	SquidMan squidman;
-	public static boolean enemyKilled = false;
+	public static Boolean enemyKilled = false;
 	
 	public Laser(int x, int y, int mouseY, int mouseX, int width, int height, ID id) {
 		super(x, y, id);
@@ -47,7 +47,7 @@ public class Laser extends GameObject{
 				if(getBottomBounds().intersects(squidman.getBottomBounds())) {
 					remove_me = 1;
 					Handler.removeObject(squidman);
-					enemyKilled = true;
+					Game.enemiesRemaining--;
 				}else enemyKilled = false;
 			}
 		}

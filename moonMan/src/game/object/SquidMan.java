@@ -226,8 +226,6 @@ public class SquidMan extends GameObject {
 			squidMan = op.filter(squidMan, null);	
 		}	
 		g.drawImage(squidMan,  x, y - 25, 128, 128, null);
-		g.setColor(Color.white);
-		g.drawRect(x + 35, y - 5, 60, 87);
 	}
 	
 	private void checkCollision() {

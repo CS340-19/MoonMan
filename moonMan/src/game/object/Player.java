@@ -104,6 +104,7 @@ public class Player extends GameObject {
 	}
 	
 	public void tick() {
+		if (velX == 0) walking = false;
 		x += velX;
 		X = x;
 		y += velY;
@@ -227,75 +228,6 @@ public class Player extends GameObject {
 			}
 		}
 	}
-	
-	
-	/* Dependant on the current floating sleep counter number,
-	 * Set the players y velocity to -1, 0, or 1.
-	 * This has the effect of the player going up and down
-	 */
-	/*private void floating_animation() {
-		if( floating_sleep_counter == 0 ) velY = 0;
-		if( floating_sleep_counter == 3 ) velY = 1;
-		if( floating_sleep_counter == 6 ) velY = -1;
-		if( floating_sleep_counter == 9 ) velY = 0;
-		if( floating_sleep_counter == 12 ) velY = 1;
-		if( floating_sleep_counter == 15 ) velY = -1;
-		if( floating_sleep_counter == 18 ) velY = 0;
-		if( floating_sleep_counter == 21 ) velY = 1;
-		if( floating_sleep_counter == 24 ) velY = -1;
-		if( floating_sleep_counter == 27 ) velY = 0;
-		if( floating_sleep_counter == 30 ) velY = 1;
-		if( floating_sleep_counter == 33 ) velY = -1;
-		if( floating_sleep_counter == 36 ) velY = 0;
-		if( floating_sleep_counter == 39 ) velY = 1;
-		if( floating_sleep_counter == 42 ) velY = -1;
-		if( floating_sleep_counter == 45 ) velY = 0;
-		if( floating_sleep_counter == 48 ) velY = 1;
-		if( floating_sleep_counter == 51 ) velY = -1;
-		if( floating_sleep_counter == 54 ) velY = 0;
-		if( floating_sleep_counter == 57 ) velY = 1;
-		if( floating_sleep_counter == 60 ) velY = -1;
-		if( floating_sleep_counter == 63 ) velY = 0;
-		if( floating_sleep_counter == 66 ) velY = 1;
-		if( floating_sleep_counter == 69 ) velY = -1;
-		if( floating_sleep_counter == 72 ) velY = 0;
-		if( floating_sleep_counter == 75 ) velY = 1;
-		if( floating_sleep_counter == 78 ) velY = -1;
-		if( floating_sleep_counter == 81 ) velY = 0;
-		if( floating_sleep_counter == 84 ) velY = 1;
-		if( floating_sleep_counter == 87 ) velY = -1;
-		if( floating_sleep_counter == 90 ) velY = 0;
-		if( floating_sleep_counter == 93 ) velY = 1;
-		if( floating_sleep_counter == 96 ) velY = -1;
-		if( floating_sleep_counter == 99 ) velY = 0;
-		if( floating_sleep_counter == 102 ) velY = 1;
-		if( floating_sleep_counter == 105 ) velY = -1;
-		if( floating_sleep_counter == 108 ) velY = 0;
-		if( floating_sleep_counter == 111 ) velY = 1;
-		if( floating_sleep_counter == 114 ) velY = -1;
-		if( floating_sleep_counter == 117 ) velY = 0;
-		if( floating_sleep_counter == 120 ) velY = 1;
-		if( floating_sleep_counter == 123 ) velY = -1;
-		if( floating_sleep_counter == 126 ) velY = 0;
-		if( floating_sleep_counter == 129 ) velY = 1;
-		if( floating_sleep_counter == 132 ) velY = -1;
-		if( floating_sleep_counter == 135 ) velY = 0;
-		if( floating_sleep_counter == 138 ) velY = 1;
-		if( floating_sleep_counter == 141 ) velY = -1;
-		if( floating_sleep_counter == 144 ) velY = 0;
-		if( floating_sleep_counter == 147 ) velY = 1;
-		if( floating_sleep_counter == 150 ) velY = -1;
-		if( floating_sleep_counter == 153 ) velY = 0;
-		if( floating_sleep_counter == 156 ) velY = 1;
-		if( floating_sleep_counter == 159 ) velY = -1;
-		if( floating_sleep_counter == 162 ) velY = 0;
-		if( floating_sleep_counter == 165 ) velY = 1;
-		if( floating_sleep_counter == 168 ) velY = -1;
-		if( floating_sleep_counter == 171 ) velY = 0;
-		if( floating_sleep_counter == 174 ) velY = 1;
-		if( floating_sleep_counter == 177 ) velY = -1;
-		if( floating_sleep_counter == 180 ) velY = 0;
-	} */
 
 	public void render(Graphics g, int row, int col ) {
 		

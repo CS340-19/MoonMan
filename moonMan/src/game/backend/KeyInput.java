@@ -140,12 +140,10 @@ public class KeyInput extends KeyAdapter {
 				}
 				if(key == KeyEvent.VK_A) {
 					player.setVelX(0);
-					player.setWalking(false);
 					keyPressed[0] = false;
 				}
 				if(key == KeyEvent.VK_D) {
 					player.setVelX(0);
-					player.setWalking(false);
 					keyPressed[1] = false;
 				}
 				if(key == KeyEvent.VK_S) {

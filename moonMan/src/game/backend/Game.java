@@ -152,7 +152,7 @@ public class Game extends Canvas implements Runnable {
 				}
 				Random random = new Random();
 				enemy_offset = random.nextInt(WIDTH/2);
-				Handler.addObject(new SquidMan(centerX - 32 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
+				//Handler.addObject(new SquidMan(centerX - 32 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
 				Laser.enemyKilled = false;
 			}
 		}

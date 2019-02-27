@@ -151,13 +151,14 @@ public class Game extends Canvas implements Runnable {
 					enemy_offset = random.nextInt(WIDTH/2);
 					Handler.addObject(new SquidMan(1000 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
 				}
-<<<<<<< HEAD
-				Random random = new Random();
-				enemy_offset = random.nextInt(WIDTH/2);
-				//Handler.addObject(new SquidMan(centerX - 32 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
-				Laser.enemyKilled = false;
-=======
->>>>>>> branch 'master' of https://github.com/CS340-19/MoonMan.git
+			}
+			for(int j = 0; j < Handler.getObjects().size(); j++) {
+				if(Handler.getObjects().get(j).getID() == ID.Laser) {
+					Laser laser = (Laser) Handler.getObjects().get(j);
+					if(laser.remove_me == 1) {
+						Handler.removeObject(laser);
+					}
+				}
 			}
 		}
 		jetpackfuel_plate = jetpackfuel_ss.grabImage(Player.jf_w, Player.jf_h, 256, 256);

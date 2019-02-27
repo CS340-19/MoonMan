@@ -253,8 +253,6 @@ public class Player extends GameObject {
 			moonMan = op.filter(moonMan, null);	
 		}	
 		g.drawImage(moonMan,  x, y -20, 128, 128, null);
-		g.setColor(Color.white);
-		g.drawRect(x + 30, y - 10, 60, 87);
 	}
 	
 	

@@ -46,6 +46,7 @@ public class Game extends Canvas implements Runnable {
 	public static int Left_MW = centerX - (int) ((WIDTH/1.5)/2);
 	public static boolean Pause = false;
 	public static int Score = 0;
+	public static int enemiesRemaining = 10;
 	//public static GameState state = GameState.MENU;
 	
 	
@@ -59,7 +60,7 @@ public class Game extends Canvas implements Runnable {
 		
 		int x = -32;
 		for(int i = 0; i <= 60; i++) {
-			Handler.addObject(new Floor(x, HEIGHT - 64, WIDTH, 64, ID.Floor));
+			Handler.addObject(new Floor(x, HEIGHT - 64, 40, 64, ID.Floor));
 			x += 32;
 		}
 		
@@ -68,9 +69,10 @@ public class Game extends Canvas implements Runnable {
 		Handler.addObject(new Player(150, HEIGHT-100, 64, 64, ID.Player));
 		Random random = new Random();
 		enemy_offset = random.nextInt(WIDTH/2);
-		Handler.addObject(new SquidMan(centerX - 32 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
-		//Handler.addObject(new SquidMan(1800, HEIGHT/2 - 32, 64, 64, ID.Enemy));
-		
+		//Handler.addObject(new SquidMan(centerX - 32 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
+		for(int i = 0; i < enemiesRemaining; i++) {
+			Handler.addObject(new SquidMan(1800, HEIGHT/2 - 32, 64, 64, ID.Enemy));
+		}
 	}
 	
 	//Starts thread for game
@@ -144,9 +146,11 @@ public class Game extends Canvas implements Runnable {
 		}
 		if(state == GameState.GAME) {
 			if(Laser.enemyKilled) {
-				Random random = new Random();
-				enemy_offset = random.nextInt(WIDTH/2);
-				Handler.addObject(new SquidMan(centerX - 32 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
+				for(int i = 0; i < enemiesRemaining; i++) {
+					Random random = new Random();
+					enemy_offset = random.nextInt(WIDTH/2);
+					Handler.addObject(new SquidMan(1000 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
+				}
 			}
 		}
 		jetpackfuel_plate = jetpackfuel_ss.grabImage(Player.jf_w, Player.jf_h, 256, 256);

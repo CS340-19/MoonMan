@@ -12,6 +12,7 @@ public abstract class GameObject {
 	protected int velX, velY;	//control speed in x, y direction
 	protected int width;
 	protected int height;
+	public int remove_me;
 	
 	public GameObject(int x, int y, ID id) {
 		this.x = x;

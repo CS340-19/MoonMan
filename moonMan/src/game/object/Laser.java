@@ -21,12 +21,13 @@ public class Laser extends GameObject{
 	
 	public Laser(int x, int y, int mouseY, int mouseX, int width, int height, ID id) {
 		super(x, y, id);
+		remove_me = 0;
 		Laser.mouseX = mouseX;
 		Laser.mouseY = mouseY;
 		
 		image = loader.loadImage("./src/game/graphics/sprites/Laser MM.png");
 		
-		speed = 25;
+		speed = 32;
 		angle = Math.atan2(mouseX - x, mouseY - y);
 		setVelX((int) (speed * Math.sin(angle)));
 		setVelY((int) (speed * Math.cos(angle)));
@@ -44,6 +45,7 @@ public class Laser extends GameObject{
 			if(Handler.getObjects().get(i).getID() == ID.Enemy) {
 				squidman = (SquidMan) Handler.getObjects().get(i);
 				if(getBottomBounds().intersects(squidman.getBottomBounds())) {
+					remove_me = 1;
 					Handler.removeObject(squidman);
 					enemyKilled = true;
 				}else enemyKilled = false;

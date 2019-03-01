@@ -3,6 +3,10 @@ package game.backend;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import game.object.*;
 import game.screens.Menu;
@@ -26,6 +30,12 @@ public class MouseInput extends MouseAdapter {
 						}
 					}
 					if(los == 1) {
+						try {
+							game.sounds.audioPlayer.main("./src/game/sounds/wav_files/laser.wav");
+						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						Handler.addObject(new Laser(player.x, player.y - 40, e.getY(), e.getX(), 10, 10, ID.Laser));
 						los = 0;
 					}
@@ -62,6 +72,12 @@ public class MouseInput extends MouseAdapter {
 					break;
 				case MENU:
 					if(rect.intersects(Menu.play)) {
+						try {
+							game.sounds.audioPlayer.main("./src/game/sounds/wav_files/select.wav");
+						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						Game.state = GameState.GAME;
 						for(int i = 0; i < Handler.getObjects().size(); i++) {
 							if(Handler.getObjects().get(i).getID() == ID.Player) {

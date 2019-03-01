@@ -2,6 +2,10 @@ package game.backend;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import game.object.Foreground;
 import game.object.ID;
@@ -34,6 +38,12 @@ public class KeyInput extends KeyAdapter {
 					lastKey = key;
 					if(!player.isJumping() && jumped == false) {
 						player.setJumping(true);
+						try {
+							game.sounds.audioPlayer.main("./src/game/sounds/wav_files/jump.wav");
+						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						player.setVelY(-20);
 						jumped = true;
 					}

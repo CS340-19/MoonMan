@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import game.object.Foreground;
 
 import game.backend.Game;
 import game.backend.GameObject;
@@ -105,7 +106,12 @@ public class Player extends GameObject {
 	}
 	
 	public void tick() {
-		if (velX == 0) walking = false;
+		if (velX == 0 && !((Foreground.getLeftBounds().intersects(getBottomBounds())) && Foreground.Begining == false) 
+					  && !((Foreground.getBeginingBounds().intersects(getBottomBounds())) && Foreground.Begining == true)
+					  && !((Foreground.getRightBounds().intersects(getBottomBounds())) && Foreground.Ending == false) 
+					  && !((Foreground.getEndingBounds().intersects(getBottomBounds())) && Foreground.Ending == true)) {
+			walking = false;
+		}
 		x += velX;
 		X = x;
 		y += velY;

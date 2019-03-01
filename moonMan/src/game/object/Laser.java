@@ -27,7 +27,7 @@ public class Laser extends GameObject{
 		
 		image = loader.loadImage("./src/game/graphics/sprites/Laser MM.png");
 		
-		speed = 32;
+		speed = 19;
 		angle = Math.atan2(mouseX - x - 120, mouseY - y - 80);
 		setVelX((int) (speed * Math.sin(angle)));
 		setVelY((int) (speed * Math.cos(angle)));

@@ -219,8 +219,8 @@ public class Player extends GameObject {
 			if( jetpack_fuel > 0 ) {
 				falling = false;
 				if(firstCall == true) velY = 0;
-				if(floating_sleep_counter%60 == 0) secCount++;
-				if(secCount == 3) {
+				if(floating_sleep_counter%30 == 0) secCount++;
+				if(secCount == 1) {
 					jetpack_fuel -= 10;
 					secCount = 0;
 				}
@@ -233,6 +233,19 @@ public class Player extends GameObject {
 				floating_sleep_counter = 0;
 				
 			}
+		}
+		/* else start recharging the jet pack */
+		else {
+			
+			if( jetpack_fuel < 100 ) {
+				if(floating_sleep_counter%30 == 0) secCount++;
+				if( secCount == 1 ) {
+					jetpack_fuel += 10;
+					secCount = 0;
+				}
+				floating_sleep_counter++;
+			}
+			
 		}
 	}
 

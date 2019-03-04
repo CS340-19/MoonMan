@@ -41,6 +41,8 @@ public class Player extends GameObject {
 	public Boolean is_floating = false;
 	public Boolean is_flying = false;
 	public Boolean firstCall = false;
+	public Boolean pressingA = false;
+	public Boolean pressingD = false;
 	public int secCount = 0;
 	public int walk_sleep_counter = 0;
 	public int which_step = 0;
@@ -106,15 +108,39 @@ public class Player extends GameObject {
 	}
 	
 	public void tick() {
-		if (velX == 0 && !((Foreground.getLeftBounds().intersects(getBottomBounds())) && Foreground.Begining == false) 
-					  && !((Foreground.getBeginingBounds().intersects(getBottomBounds())) && Foreground.Begining == true)
-					  && !((Foreground.getRightBounds().intersects(getBottomBounds())) && Foreground.Ending == false) 
-					  && !((Foreground.getEndingBounds().intersects(getBottomBounds())) && Foreground.Ending == true)) {
-			walking = false;
-		}
 		x += velX;
 		X = x;
 		y += velY;
+		
+		if(walking == true) {
+			if(walk_sleep_counter == 0) {
+				if(which_step == 0) {
+					w_row = 1;
+					w_col = 5;
+				} else if(which_step == 1) {
+					w_row = 2;
+					w_col = 5;				
+				} else if(which_step == 2) {
+					w_row = 3;
+					w_col = 5;
+				} else if(which_step == 3) {
+					w_row = 4;
+					w_col = 5;
+					which_step = 0;
+				} else {
+					w_row = 1;
+					w_col = 5;
+				}
+				which_step++;
+			}
+			walk_sleep_counter++;
+			if(walk_sleep_counter == 12) {
+				walk_sleep_counter = 0;
+			}
+		} else {
+			which_step = 0;
+			walk_sleep_counter = 0;
+		}
 		
 		fall();
 		checkCollision();
@@ -154,47 +180,30 @@ public class Player extends GameObject {
 			jf_h = 4;
 		}
 		
-		
+		if(!pressingA && !pressingD) {
+			walking = false;
+		}
 		
 		if(jumping == true) {
 			in_air = true;
 			walking = false;
 		}else {
 			in_air = false;
-		}
-
-		if(walking == true) {
-			if(walk_sleep_counter == 0) {
-				if(which_step == 0) {
-					w_row = 1;
-					w_col = 5;
-				} else if(which_step == 1) {
-					w_row = 2;
-					w_col = 5;				
-				} else if(which_step == 2) {
-					w_row = 3;
-					w_col = 5;
-				} else if(which_step == 3) {
-					w_row = 4;
-					w_col = 5;
-					which_step = 0;
-				} else {
-					w_row = 1;
-					w_col = 5;
+			if (velX == 0 && !((Foreground.getLeftBounds().intersects(getBottomBounds())) && Foreground.Begining == false) 
+					  && !((Foreground.getBeginingBounds().intersects(getBottomBounds())) && Foreground.Begining == true)
+					  && !((Foreground.getRightBounds().intersects(getBottomBounds())) && Foreground.Ending == false) 
+					  && !((Foreground.getEndingBounds().intersects(getBottomBounds())) && Foreground.Ending == true)) {
+			walking = false;
+			}
+			else {
+				if(pressingA || pressingD) {
+					walking = true;	
 				}
-				which_step++;
 			}
-			walk_sleep_counter++;
-			if(walk_sleep_counter == 12) {
-				walk_sleep_counter = 0;
-			}
-		} else {
-			which_step = 0;
-			walk_sleep_counter = 0;
 		}
 		
 		/* Floating mechanics needed for jetpack */
-		if( is_floating == true ) {
+		if(is_floating == true ) {
 			
 			/* if the floating mechanic has been going for less than 3 seconds 
 			 * set falling false, call the floating animation, and increment the sleep counter
@@ -248,7 +257,6 @@ public class Player extends GameObject {
 			col = w_col;
 		}
 
-		
 		moonMan = ss.grabImage(row, col, 64, 64);
 		
 		if(facing_right == false) {
@@ -260,7 +268,6 @@ public class Player extends GameObject {
 		}	
 		g.drawImage(moonMan,  x, y -20, 128, 128, null);
 	}
-	
 	
 	private void checkCollision() {
 		for(GameObject obj : floorBlocks) {

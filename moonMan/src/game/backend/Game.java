@@ -41,13 +41,13 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private boolean imageLoaded = false;
 	private Handler handler;
-	public static GameState state = GameState.SPLASH_SCREEN;
+	//public static GameState state = GameState.SPLASH_SCREEN;
 	public static int Right_MW = centerX + (int) ((WIDTH/1.5)/2);
 	public static int Left_MW = centerX - (int) ((WIDTH/1.5)/2);
 	public static boolean Pause = false;
 	public static int Score = 0;
 	public static int enemiesRemaining = 10;
-	//public static GameState state = GameState.MENU;
+	public static GameState state = GameState.MENU;
 	
 	
 	public Game() {

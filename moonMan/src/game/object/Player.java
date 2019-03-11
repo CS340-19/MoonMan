@@ -19,8 +19,10 @@ import game.backend.Game;
 import game.backend.GameObject;
 import game.backend.GameState;
 import game.backend.Handler;
+import game.backend.KeyInput;
 import game.graphics.BufferedImageLoader;
 import game.graphics.SpriteSheetResolver;
+import game.object.Foreground;
 
 public class Player extends GameObject {
 	
@@ -112,7 +114,10 @@ public class Player extends GameObject {
 		X = x;
 		y += velY;
 		
-		if(walking == true) {
+		fall();
+		checkCollision();
+
+		if (walking == true) {
 			if(walk_sleep_counter == 0) {
 				if(which_step == 0) {
 					w_row = 1;
@@ -141,9 +146,6 @@ public class Player extends GameObject {
 			which_step = 0;
 			walk_sleep_counter = 0;
 		}
-		
-		fall();
-		checkCollision();
 		
 		if(jetpack_fuel > 90 && jetpack_fuel <= 100) {
 			jf_w = 1;
@@ -180,11 +182,11 @@ public class Player extends GameObject {
 			jf_h = 4;
 		}
 		
-		if(!pressingA && !pressingD) {
+		if (!pressingA && !pressingD) {
 			walking = false;
 		}
 		
-		if(jumping == true) {
+		if (jumping == true) {
 			in_air = true;
 			walking = false;
 		}else {
@@ -203,7 +205,7 @@ public class Player extends GameObject {
 		}
 		
 		/* Floating mechanics needed for jetpack */
-		if(is_floating == true ) {
+		if(is_floating == true) {
 			
 			/* if the floating mechanic has been going for less than 3 seconds 
 			 * set falling false, call the floating animation, and increment the sleep counter
@@ -225,7 +227,7 @@ public class Player extends GameObject {
 			//}
 		
 			/* Using jet pack fuel and a 30 second timer instead for floating */
-			if( jetpack_fuel > 0 ) {
+			if (jetpack_fuel > 0) {
 				falling = false;
 				if(firstCall == true) velY = 0;
 				if(floating_sleep_counter%30 == 0) secCount++;
@@ -246,9 +248,9 @@ public class Player extends GameObject {
 		/* else start recharging the jet pack */
 		else {
 			
-			if( jetpack_fuel < 100 ) {
-				if(floating_sleep_counter%30 == 0) secCount++;
-				if( secCount == 1 ) {
+			if (jetpack_fuel < 100) {
+				if (floating_sleep_counter%30 == 0) secCount++;
+				if ( secCount == 1 ) {
 					jetpack_fuel += 10;
 					secCount = 0;
 				}
@@ -260,19 +262,19 @@ public class Player extends GameObject {
 
 	public void render(Graphics g, int row, int col ) {
 		
-		if(in_air == true) {
+		if (in_air == true) {
 			row = 4;
 			col = 4;
 			walking = false;
 		}
-		if(walking == true) {
+		if (walking == true) {
 			row = w_row;
 			col = w_col;
 		}
 
 		moonMan = ss.grabImage(row, col, 64, 64);
 		
-		if(facing_right == false) {
+		if (facing_right == false) {
 			// Flip the image horizontally
 			AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
 			tx.translate(-moonMan.getWidth(null), 0);
@@ -283,23 +285,24 @@ public class Player extends GameObject {
 	}
 	
 	private void checkCollision() {
-		for(GameObject obj : floorBlocks) {
-			if(obj.getID() == ID.Floor) {
+		for (GameObject obj : floorBlocks) {
+			if (obj.getID() == ID.Floor) {
 				floor = (Floor) obj;
-				if(getBottomBounds().intersects(floor.getTopBounds())) {
+				if (getBottomBounds().intersects(floor.getTopBounds())) {
 					velY = 0;
 					y = floor.getY() - height;
 					setJumping(false);
 					in_air = false;
 					is_floating = false;
 					falling = true;
+					KeyInput.jumped = false;
 				}
 			}
 		}
-		for(int i = 0; i < Handler.getObjects().size(); i++) {
-			if(Handler.getObjects().get(i).getID() == ID.Enemy) {
+		for (int i = 0; i < Handler.getObjects().size(); i++) {
+			if (Handler.getObjects().get(i).getID() == ID.Enemy) {
 				squidman = (SquidMan) Handler.getObjects().get(i);
-				if(getBottomBounds().intersects(squidman.getBottomBounds())) {
+				if (getBottomBounds().intersects(squidman.getBottomBounds())) {
 					Game.state = GameState.MENU;
 				}
 			}

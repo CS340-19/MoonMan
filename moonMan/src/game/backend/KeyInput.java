@@ -20,7 +20,7 @@ public class KeyInput extends KeyAdapter {
 
 	}
 		
-	boolean jumped = false;
+	public static boolean jumped = false;
 	int lastKey = -1;
 	
 	public void keyPressed(KeyEvent e) {
@@ -34,7 +34,7 @@ public class KeyInput extends KeyAdapter {
 			
 			if(player.getID() == ID.Player) {
 				/* Space key = Jump */
-				if(key == KeyEvent.VK_SPACE && key != lastKey && player.is_floating == false) {
+				if(key == KeyEvent.VK_SPACE && key != lastKey && player.is_floating == false && player.in_air == false) {
 					lastKey = key;
 					if(!player.isJumping() && jumped == false) {
 						player.setJumping(true);
@@ -79,6 +79,7 @@ public class KeyInput extends KeyAdapter {
 					player.fall();
 				}
 				if(key == KeyEvent.VK_A) {
+					player.pressingA = true;
 					Foreground.checkCollision();
 					if((Foreground.getLeftBounds().intersects(player.getBottomBounds())) && Foreground.Begining == false) {
 						player.setVelX(0);
@@ -90,13 +91,14 @@ public class KeyInput extends KeyAdapter {
 						player.setVelX(-5);
 						player.stay = false;
 					}
+					
 					player.setFacing_right(false);
 					player.setWalking(true);
-					player.pressingA = true;
 					keyPressed[0] = true;
 					if(keyPressed[1]) keyPressed[1] = false;
 				}
 				if(key == KeyEvent.VK_D) {
+					player.pressingD = true;
 					Foreground.checkCollision();
 					if((Foreground.getRightBounds().intersects(player.getBottomBounds())) && Foreground.Ending == false) {
 						player.setVelX(0);
@@ -112,7 +114,6 @@ public class KeyInput extends KeyAdapter {
 					
 					player.setFacing_right(true);
 					player.setWalking(true);
-					player.pressingD = true;
 					keyPressed[1] = true;
 					if(keyPressed[0]) keyPressed[0] = false;
 				}

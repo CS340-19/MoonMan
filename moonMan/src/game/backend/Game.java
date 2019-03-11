@@ -162,10 +162,11 @@ public class Game extends Canvas implements Runnable {
 			if( tickCount >= minTick && tickCount < maxTick && tickCount % 20 == 0 ) {
 				Random random = new Random();
 				enemy_offset = random.nextInt(WIDTH/2);
-				enemy_offset += 500;
+				enemy_offset += 700;
 				//offsetX = random.nextInt(3000);
 				//offsetX += 1000;
 				if( Player.X < (WIDTH/3) ) Handler.addObject(new SquidMan( Player.X + enemy_offset, HEIGHT - 3000, 64, 64, ID.Enemy));
+				else if ( Player.X > ( (2 * WIDTH)/ 3 ) ) Handler.addObject(new SquidMan( Player.X - enemy_offset, HEIGHT - 3000, 64, 64, ID.Enemy));
 				else {
 					if( random.nextInt() >= 0 ) {
 						Handler.addObject(new SquidMan( Player.X + enemy_offset, HEIGHT - 3000, 64, 64, ID.Enemy));

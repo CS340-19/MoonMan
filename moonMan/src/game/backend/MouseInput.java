@@ -19,6 +19,7 @@ public class MouseInput extends MouseAdapter {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		int mouse = e.getButton();
+		Rectangle rect = new Rectangle(e.getX(), e.getY(), 1, 1);
 		Player player = null;
 		
 		if(mouse == MouseEvent.BUTTON1) {
@@ -41,6 +42,19 @@ public class MouseInput extends MouseAdapter {
 					}
 					break;
 				case MENU:
+					if(rect.intersects(Menu.changeLeft)) {
+						if(Menu.num == 0){
+							Menu.num = Menu.numSize;
+						}else {
+							Menu.num--;
+						}
+					} else if(rect.intersects(Menu.changeRight)) {
+						if(Menu.num == Menu.numSize) {
+							Menu.num = 0;
+						}else {
+							Menu.num++;
+						}
+					}
 					break;
 				case OPTIONS:
 					break;

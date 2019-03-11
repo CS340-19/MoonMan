@@ -2,11 +2,13 @@ package game.screens;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import game.backend.Game;
 import game.graphics.BufferedImageLoader;
@@ -14,7 +16,7 @@ import game.graphics.SpriteSheetResolver;
 
 public class Menu {
 
-	public static Rectangle play, options, quit;
+	public static Rectangle play, options, quit, changeLeft, changeRight, name;
 	//private static int centerX = Game.WIDTH /2;
 	//private static int centerY = Game.HEIGHT /2;
 	public static BufferedImage menuBackground = null;
@@ -24,12 +26,19 @@ public class Menu {
 	public static BufferedImage menuQuit = null;
 	public static BufferedImage player = null;
 	public static BufferedImage player_ss = null;
+	public static BufferedImage menuChangePlayer = null;
 	public static SpriteSheetResolver ss;
 	public static int sleep_counter = 0;
 	public static int which_step = 0;
 	public static int w_row = 1;
 	public static int w_col = 1;
 	public static int y = 150;
+	public static String[] text = new String[100];
+	public static int[] textX = new int[100];
+	public static int[] textY = new int[100];
+	public static int[] textSize = new int[100];
+	public static int num = 0;
+	public static int numSize = 1;
 	
 	public static void initMenu() {
 		BufferedImageLoader loader = new BufferedImageLoader();
@@ -39,19 +48,46 @@ public class Menu {
 		menuPlay = loader.loadImage("./src/game/graphics/sprites/Play_menu.png");
 		menuOptions = loader.loadImage("./src/game/graphics/sprites/Options_menu.png");
 		menuQuit = loader.loadImage("./src/game/graphics/sprites/Quit_menu.png");
+		menuChangePlayer = loader.loadImage("./src/game/graphics/sprites/Change_menu.png");
 		play = new Rectangle(Game.centerX -235, Game.centerY -240, 500, 100);
 		options = new Rectangle(Game.centerX - 380, Game.centerY - 80, 800, 100);
 		quit = new Rectangle(Game.centerX -250, Game.centerY + 80, 500, 100);
+		changeLeft = new Rectangle(Game.centerX - 380, Game.centerY + 300, 110, 100);
+		changeRight = new Rectangle(Game.centerX + 310, Game.centerY + 300, 110, 100);
+		name = new Rectangle(Game.centerX - 380, Game.centerY + 300, 800, 100);
 		player_ss = loader.loadImage("./src/game/graphics/sprites/MoonManMenu_SS.png");
 		ss = new SpriteSheetResolver(player_ss);
+		
+		//set array
+		text[0] = "MoonMan";
+		textX[0] = 120;
+		textY[0] = 90;
+		textSize[0] = 100;
+		text[1] = "Elon Musk";
+		textX[1] = 120;
+		textY[1] = 90;
+		textSize[1] = 100;
 	}
 	
-	public static void drawButton(Graphics g, Rectangle rect, String text, int offsetX) {
-		//Font tempFont = new Font("Bauhaus 93", Font.BOLD, 48);
-		//g.setFont(tempFont);
-		g.setColor(Color.black);
-		g.drawRect(rect.x, rect.y, rect.width, rect.height);	
-		//g.drawString(text, rect.x + offsetX, rect.y + 60);
+	public static void drawButton(Graphics g, Rectangle rect, String text, int offsetX, int offsetY, float size) {
+
+		     //Returned font is of pt size 1
+		     Font font;
+			try {
+				font = Font.createFont(Font.TRUETYPE_FONT, new File("./src/game/graphics/sprites/nasalization-rg.ttf"));
+				Font tempFont = font.deriveFont(size);
+				g.setFont(tempFont);
+				g.setColor(Color.white);
+				g.drawString(text,rect.x + offsetX, rect.y + offsetY);
+
+			} catch (FontFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		//g.drawRect(rect.x, rect.y, rect.width, rect.height);
 	}
 	
 	public static void render(Graphics g) {
@@ -59,16 +95,26 @@ public class Menu {
 		//g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 		g.drawImage(menuBackground, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		g.drawImage(menuRock, Game.WIDTH-(250*3), Game.HEIGHT-(60*3), 250*3, 60*3, null);
-		g.drawImage(menuPlay, Game.centerX - 235, Game.centerY - 240, 500, 100, null);
-		g.drawImage(menuOptions, Game.centerX-380, Game.centerY - 80, 800, 100, null);
-		g.drawImage(menuQuit, Game.centerX-250, Game.centerY + 80, 500, 100, null);
-		drawButton(g, play, "Play", 165);
-		drawButton(g, options, "Options", 170);
-		drawButton(g, quit, "Quit", 165);
+		//g.drawImage(menuPlay, Game.centerX - 235, Game.centerY - 240, 500, 100, null);
+		//g.drawImage(menuOptions, Game.centerX-380, Game.centerY - 80, 800, 100, null);
+		//g.drawImage(menuQuit, Game.centerX-250, Game.centerY + 80, 500, 100, null);
+		g.drawImage(menuChangePlayer, Game.centerX-380, Game.centerY + 300, 800, 100, null);
+		
+		drawButton(g, play, "Play", 105, 100, 140);
+		drawButton(g, options, "Options", 100, 100, 140);
+		drawButton(g, quit, "Quit", 100, 100, 140);
+		drawButton(g, changeLeft, "", 100, 0, 120);
+		drawButton(g, changeRight, "", 165, 0, 120);
+		
+		//set what player
+		drawButton(g, name, text[num], textX[num], textY[num], textSize[num]);
+		
+		
+	
 		player = ss.grabImage(w_row, w_col, 64, 64);
 		//g.drawImage(player,  Game.WIDTH-480, Game.HEIGHT-280, 256, 256, null);
 		g.drawImage(player, Game.WIDTH-(250*3/2), Game.HEIGHT-(60*5), 256, 256, null);
-				
+		
 	}
 	
 	public static void tick() {

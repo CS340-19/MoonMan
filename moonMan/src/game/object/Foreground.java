@@ -117,11 +117,11 @@ public class Foreground extends GameObject{
 	}
 	
 	public static Rectangle getLeftBounds() {
-		return new Rectangle(Game.centerX - (int) ((Game.WIDTH/1.3)/2)-32, 0, 20, Game.HEIGHT);
+		return new Rectangle(Game.centerX - (int) ((Game.WIDTH/1.3)/2)-32, 0, 10, Game.HEIGHT);
 	}
 	
 	public static Rectangle getRightBounds() {
-		return new Rectangle(Game.centerX + (int) ((Game.WIDTH/1.3)/2)-64, 0, 20, Game.HEIGHT);
+		return new Rectangle(Game.centerX + (int) ((Game.WIDTH/1.3)/2)-64, 0, 10, Game.HEIGHT);
 	}
 
 }

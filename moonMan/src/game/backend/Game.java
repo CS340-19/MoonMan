@@ -36,10 +36,16 @@ public class Game extends Canvas implements Runnable {
 	public BufferedImage jetpackfuel_full_ss = null;
 	public JetPackFuelResolver jetpackfuel_ss = null;
 	public int enemy_offset;
+	public int offsetX = 0;
+	public int tickCount = 0;
+	public int maxTick = 500;
+	public int minTick = 300;
 	private Thread thread;
 	private SplashScreen splashscreen;
 	private boolean running = false;
 	private boolean imageLoaded = false;
+	private boolean firstWave = true;
+	private boolean secondWave = false;
 	private Handler handler;
 	//public static GameState state = GameState.SPLASH_SCREEN;
 	public static int Right_MW = centerX + (int) ((WIDTH/1.5)/2);
@@ -145,13 +151,36 @@ public class Game extends Canvas implements Runnable {
 			Menu.tick();
 		}
 		if(state == GameState.GAME) {
-			if(Laser.enemyKilled) {
-				for(int i = 0; i < enemiesRemaining; i++) {
-					Random random = new Random();
-					enemy_offset = random.nextInt(WIDTH/2);
-					Handler.addObject(new SquidMan(1000 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
+			//if(Laser.enemyKilled) {
+				//for(int i = 0; i < enemiesRemaining; i++) {
+				//	Random random = new Random();
+				//	enemy_offset = random.nextInt(WIDTH/2);
+				//	Handler.addObject(new SquidMan(1000 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
+				//}
+			//}
+			
+			if( tickCount >= minTick && tickCount < maxTick && tickCount % 20 == 0 ) {
+				Random random = new Random();
+				enemy_offset = random.nextInt(WIDTH/2);
+				enemy_offset += 500;
+				//offsetX = random.nextInt(3000);
+				//offsetX += 1000;
+				if( Player.X < (WIDTH/3) ) Handler.addObject(new SquidMan( Player.X + enemy_offset, HEIGHT - 3000, 64, 64, ID.Enemy));
+				else {
+					if( random.nextInt() >= 0 ) {
+						Handler.addObject(new SquidMan( Player.X + enemy_offset, HEIGHT - 3000, 64, 64, ID.Enemy));
+					}
+					else {
+						Handler.addObject(new SquidMan( Player.X - enemy_offset, HEIGHT - 3000, 64, 64, ID.Enemy));
+					}
 				}
 			}
+			if( tickCount >= maxTick ) {
+				tickCount = 0;
+				maxTick *= 2;
+				minTick *= 2;
+			}
+			
 			for(int j = 0; j < Handler.getObjects().size(); j++) {
 				if(Handler.getObjects().get(j).getID() == ID.Laser) {
 					Laser laser = (Laser) Handler.getObjects().get(j);
@@ -217,6 +246,7 @@ public class Game extends Canvas implements Runnable {
 		
 		g.dispose();
 		bs.show();
+		tickCount++;
 	}
 	
 	public static void main(String args[]) throws IOException {

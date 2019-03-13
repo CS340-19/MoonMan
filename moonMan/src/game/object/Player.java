@@ -110,9 +110,20 @@ public class Player extends GameObject {
 	}
 	
 	public void tick() {
-		x += velX;
-		X = x;
-		y += velY;
+		
+		if((x >= (Game.centerX + (int) ((Game.WIDTH/1.7)/2))) && Foreground.Ending == false && velX > 0) {	
+			y += velY;
+		}else if((x <= (Game.centerX - (int) ((Game.WIDTH/1.15)/2))) && Foreground.Begining == false && velX < 0) {
+			y += velY;
+		}else if((x <= (Game.centerX - (int) ((Game.WIDTH/.96)/2))) && velX < 0) {
+			y += velY;
+		}else if((x >= (Game.centerX + (int) ((Game.WIDTH/1.2)/2))) && velX > 0) {
+			Game.state = GameState.MENU;
+		}else {
+			x += velX;
+			X = x;
+			y += velY;
+		}
 		
 		fall();
 		checkCollision();

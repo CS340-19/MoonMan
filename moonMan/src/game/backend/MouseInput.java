@@ -97,6 +97,7 @@ public class MouseInput extends MouseAdapter {
 							if(Handler.getObjects().get(i).getID() == ID.Player) {
 								Player player = (Player) Handler.getObjects().get(i);
 								player.reset();
+								Game.score = 0;
 							}
 							if(Handler.getObjects().get(i).getID() == ID.ForeGround) {
 								Foreground foreground = (Foreground) Handler.getObjects().get(i);

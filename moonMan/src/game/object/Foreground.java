@@ -71,7 +71,10 @@ public class Foreground extends GameObject{
 	@Override
 	public void render(Graphics g, int row, int col) {	
 		//g.setColor(Color.white);
+		//g.drawRect(0, 0, 20, Game.HEIGHT);
 		//g.drawRect((totalWidth)-whereYourAt, 0, 20, Game.HEIGHT);
+		//g.drawRect(Game.centerX - (int) ((Game.WIDTH/1.3)/2)-32, 0, 10, Game.HEIGHT);
+		//g.drawRect(Game.centerX + (int) ((Game.WIDTH/1.3)/2)-64, 0, 10, Game.HEIGHT);
 	}
 	
 	public static void checkCollision() {
@@ -84,21 +87,21 @@ public class Foreground extends GameObject{
 				}else {
 					Begining = false;
 				}
-				if(whereYourAt >= totalWidth-1520) {
+				if(whereYourAt >= totalWidth-1700) {
 					Ending = true;
 					Begining = false;
 				}else {
 					Ending = false;
 				}
 				if(getLeftBounds().intersects(player.getBottomBounds())) {
-					if((Player.X+whereYourAt > (int)(Game.WIDTH/10)) && Begining == false) {
+					if((Player.X+whereYourAt > (int)(Game.WIDTH/15)) && Begining == false) {
 						X += 7;
 						whereYourAt -= 7;
 						//System.out.println("whereYourAT: " + whereYourAt + "   total: " + Player.X+whereYourAt);
 					}
 					
 				}else if(getRightBounds().intersects(player.getBottomBounds())) {
-					if((Player.X+whereYourAt < totalWidth-(int)(Game.WIDTH/6.5)) && Ending == false) {
+					if((Player.X+whereYourAt < totalWidth-(int)(Game.WIDTH/4.7)) && Ending == false) {
 						X -= 7;
 						whereYourAt += 7;
 						//System.out.println("whereYourAT: " + whereYourAt + "   total: " + Player.X+whereYourAt);

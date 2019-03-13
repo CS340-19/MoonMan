@@ -47,6 +47,7 @@ public class Laser extends GameObject{
 				if(getBottomBounds().intersects(squidman.getBottomBounds())) {
 					remove_me = 1;
 					Handler.removeObject(squidman);
+					Game.score += 5;
 					Game.enemiesRemaining--;
 				}else enemyKilled = false;
 			}

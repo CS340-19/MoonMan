@@ -1,7 +1,10 @@
 package game.backend;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -53,6 +56,8 @@ public class Game extends Canvas implements Runnable {
 	public static boolean Pause = false;
 	public static int Score = 0;
 	public static int enemiesRemaining = 10;
+	public static int score = 0;
+	public static Rectangle scoreRect;
 	public static GameState state = GameState.MENU;
 	
 	
@@ -81,6 +86,27 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 	
+	public static void drawButton(Graphics g, Rectangle rect, String text, int offsetX, int offsetY, float size) {
+
+	     //Returned font is of pt size 1
+	     Font font;
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("./src/game/graphics/sprites/nasalization-rg.ttf"));
+			Font tempFont = font.deriveFont(size);
+			g.setFont(tempFont);
+			g.setColor(Color.white);
+			g.drawString(text,rect.x + offsetX, rect.y + offsetY);
+
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	//g.drawRect(rect.x, rect.y, rect.width, rect.height);
+}
+	
 	//Starts thread for game
 	public synchronized void start() {
 		thread = new Thread(this);
@@ -107,6 +133,7 @@ public class Game extends Canvas implements Runnable {
 		jetpack_plate = loader.loadImage("./src/game/graphics/sprites/JetPackPlate.png");
 		jetpackfuel_full_ss = loader.loadImage("./src/game/graphics/sprites/JetPackFuelBar_SS.png");
 		jetpackfuel_ss = new JetPackFuelResolver(jetpackfuel_full_ss);
+		scoreRect = new Rectangle(Game.centerX - (int) (Game.WIDTH/2.42), Game.centerY - (int) (Game.HEIGHT/2.35), 20, 20);
 	}
 	
 	//Main game loop
@@ -165,6 +192,8 @@ public class Game extends Canvas implements Runnable {
 				enemy_offset += 700;
 				//offsetX = random.nextInt(3000);
 				//offsetX += 1000;
+				
+				///*
 				if( Player.X < (WIDTH/3) ) Handler.addObject(new SquidMan( Player.X + enemy_offset, HEIGHT - 3000, 64, 64, ID.Enemy));
 				else if ( Player.X > ( (2 * WIDTH)/ 3 ) ) Handler.addObject(new SquidMan( Player.X - enemy_offset, HEIGHT - 3000, 64, 64, ID.Enemy));
 				else {
@@ -175,6 +204,7 @@ public class Game extends Canvas implements Runnable {
 						Handler.addObject(new SquidMan( Player.X - enemy_offset, HEIGHT - 3000, 64, 64, ID.Enemy));
 					}
 				}
+				//*/
 			}
 			if( tickCount >= maxTick ) {
 				tickCount = 0;
@@ -226,6 +256,7 @@ public class Game extends Canvas implements Runnable {
 				g.drawImage(score_plate, 0, 0, 256, 256, null);
 				g.drawImage(jetpack_plate, 0, 0, 256, 256, null);
 				g.drawImage(jetpackfuel_plate, 0, 0, 256, 256, null);
+				drawButton(g, scoreRect, String.valueOf(score), 0, 0, 30);
 				handler.render(g, 1, 1);
 				break;
 			case MENU:

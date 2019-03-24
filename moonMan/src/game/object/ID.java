@@ -3,7 +3,9 @@ package game.object;
 //creates enum type to identify player or enemy
 public enum ID {
 	Player(),
-	Enemy(), 
+	Squidman(),
+	Hoodman(),
+	Scorpion(),
 	Floor(),
 	Laser(),
 	ForeGround(),

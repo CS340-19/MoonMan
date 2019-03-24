@@ -42,7 +42,7 @@ public class Laser extends GameObject{
 	
 	private void checkCollision() {
 		for(int i = 0; i < Handler.getObjects().size(); i++) {
-			if(Handler.getObjects().get(i).getID() == ID.Enemy) {
+			if(Handler.getObjects().get(i).getID() == ID.Squidman) {
 				squidman = (SquidMan) Handler.getObjects().get(i);
 				if(getBottomBounds().intersects(squidman.getBottomBounds())) {
 					remove_me = 1;

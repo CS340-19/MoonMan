@@ -103,7 +103,7 @@ public class MouseInput extends MouseAdapter {
 								Foreground foreground = (Foreground) Handler.getObjects().get(i);
 								foreground.reset();
 							}
-							if(Handler.getObjects().get(i).getID() == ID.Enemy) {
+							if(Handler.getObjects().get(i).getID() == ID.Squidman) {
 								SquidMan squidman = (SquidMan) Handler.getObjects().get(i);
 								squidman.reset();
 							}

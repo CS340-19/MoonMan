@@ -112,11 +112,11 @@ public class SquidMan extends GameObject {
 			
 			SquidMan squidman = null;
 			for(int i = 0; i < Handler.getObjects().size(); i++) {
-				if(Handler.getObjects().get(i).getID() == ID.Enemy) {
+				if(Handler.getObjects().get(i).getID() == ID.Squidman) {
 					squidman = (SquidMan) Handler.getObjects().get(i);
 				}
 			}
-			if(squidman.getID() == ID.Enemy) {
+			if(squidman.getID() == ID.Squidman) {
 				squidman_x = squidman.getX();
 				squidman_y = squidman.getY();
 			}

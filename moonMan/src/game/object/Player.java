@@ -311,7 +311,7 @@ public class Player extends GameObject {
 			}
 		}
 		for (int i = 0; i < Handler.getObjects().size(); i++) {
-			if (Handler.getObjects().get(i).getID() == ID.Enemy) {
+			if (Handler.getObjects().get(i).getID() == ID.Squidman) {
 				squidman = (SquidMan) Handler.getObjects().get(i);
 				if (getBottomBounds().intersects(squidman.getBottomBounds())) {
 					Game.state = GameState.MENU;

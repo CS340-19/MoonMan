@@ -125,10 +125,15 @@ public class KeyInput extends KeyAdapter {
 				if(key == KeyEvent.VK_ESCAPE) {
 					if(Game.Pause == false) {
 						Game.Pause = true;
+						try {
+							game.sounds.audioPlayer.main("./src/game/sounds/wav_files/select.wav");
+						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						Handler.addObject(new Pause(Game.centerX, Game.centerY, ID.Pause));
 						Game.state = GameState.PAUSE;
 					}
-					
 				}
 
 			}

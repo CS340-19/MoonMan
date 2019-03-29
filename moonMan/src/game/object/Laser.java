@@ -3,10 +3,16 @@ import game.backend.GameObject;
 import game.backend.Handler;
 
 import java.lang.Math;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 import game.graphics.BufferedImageLoader;
 import game.backend.Game;
 
@@ -45,6 +51,12 @@ public class Laser extends GameObject{
 			if(Handler.getObjects().get(i).getID() == ID.Squidman) {
 				squidman = (SquidMan) Handler.getObjects().get(i);
 				if(getBottomBounds().intersects(squidman.getBottomBounds())) {
+					try {
+						game.sounds.audioPlayer.main("./src/game/sounds/wav_files/enemy_hit.wav");
+					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					remove_me = 1;
 					Handler.removeObject(squidman);
 					Game.score += 5;

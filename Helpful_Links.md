@@ -13,3 +13,6 @@
 4. [Building a tiled man](http://drewjewel.com/2015/03/08/chronicles-of-a-videogame-in-java-4-building-a-tiled-map/)
 5. [Collision Detection](http://drewjewel.com/2015/03/12/chronicles-of-a-videogame-in-java-5-collision-detection-for-dummies/)
 6. [NPCs](http://drewjewel.com/2015/03/25/chronicles-of-a-videogame-in-java-6-npcs/)
+
+## Link to the sound file PDF for Java
+* [PDF Doc on how to use the sound framework in Java] (http://courses.cs.vt.edu/~cs1124/Lectures/Lecture%2015.1.pdf)

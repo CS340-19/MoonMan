@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import game.graphics.BufferedImageLoader;
 import game.graphics.JetPackFuelResolver;
@@ -43,6 +45,7 @@ public class Game extends Canvas implements Runnable {
 	public int tickCount = 0;
 	public int maxTick = 500;
 	public int minTick = 300;
+	public static int game_background = 0;
 	private Thread thread;
 	private SplashScreen splashscreen;
 	private boolean running = false;
@@ -50,15 +53,16 @@ public class Game extends Canvas implements Runnable {
 	private boolean firstWave = true;
 	private boolean secondWave = false;
 	private Handler handler;
-	//public static GameState state = GameState.SPLASH_SCREEN;
+	public static GameState state = GameState.SPLASH_SCREEN;
 	public static int Right_MW = centerX + (int) ((WIDTH/1.5)/2);
 	public static int Left_MW = centerX - (int) ((WIDTH/1.5)/2);
 	public static boolean Pause = false;
+	public static boolean Option = false;
 	public static int Score = 0;
 	public static int enemiesRemaining = 10;
 	public static int score = 0;
 	public static Rectangle scoreRect;
-	public static GameState state = GameState.MENU;
+	//public static GameState state = GameState.MENU;
 	
 	
 	public Game() {
@@ -243,6 +247,15 @@ public class Game extends Canvas implements Runnable {
 				}
 				break;
 			case GAME:
+				if(game_background == 1) {
+				try {
+					game.sounds.audioPlayer.main("./src/game/sounds/wav_files/Main_background_music.wav");
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 game_background = 0;
+				}
 				g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
 				//g.setColor(Color.white);
 				//g.drawRect(centerX - (int) ((WIDTH/1.3)/2), 0, (int) (WIDTH/1.3), HEIGHT);
@@ -268,7 +281,8 @@ public class Game extends Canvas implements Runnable {
 			case PAUSE:
 				break;
 			case QUIT:
-				stop();
+				//stop();
+				System.exit(0);
 				break;
 			default:
 				break;

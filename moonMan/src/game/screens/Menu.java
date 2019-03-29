@@ -11,12 +11,13 @@ import java.io.File;
 import java.io.IOException;
 
 import game.backend.Game;
+import game.backend.GameState;
 import game.graphics.BufferedImageLoader;
 import game.graphics.SpriteSheetResolver;
 
 public class Menu {
 
-	public static Rectangle play, options, quit, changeLeft, changeRight, name;
+	public static Rectangle play, options, quit, sounds, difficulty, tutorial, back, changeLeft, changeRight, name;
 	//private static int centerX = Game.WIDTH /2;
 	//private static int centerY = Game.HEIGHT /2;
 	public static BufferedImage menuBackground = null;
@@ -52,9 +53,14 @@ public class Menu {
 		play = new Rectangle(Game.centerX -235, Game.centerY -240, 500, 100);
 		options = new Rectangle(Game.centerX - 380, Game.centerY - 80, 800, 100);
 		quit = new Rectangle(Game.centerX -250, Game.centerY + 80, 500, 100);
-		changeLeft = new Rectangle(Game.centerX - 380, Game.centerY + 300, 110, 100);
+		changeLeft = new Rectangle(Game.centerX - 375, Game.centerY + 300, 110, 100);
 		changeRight = new Rectangle(Game.centerX + 310, Game.centerY + 300, 110, 100);
 		name = new Rectangle(Game.centerX - 380, Game.centerY + 300, 800, 100);
+		back = new Rectangle(Game.centerX -235, Game.centerY -380, 500, 100);
+		sounds = new Rectangle(Game.centerX -350, Game.centerY -240, 500, 100);
+		difficulty = new Rectangle(Game.centerX - 380, Game.centerY - 80, 800, 100);
+		tutorial = new Rectangle(Game.centerX -350, Game.centerY + 80, 500, 100);
+		
 		player_ss = loader.loadImage("./src/game/graphics/sprites/MoonManMenu_SS.png");
 		ss = new SpriteSheetResolver(player_ss);
 		
@@ -98,18 +104,23 @@ public class Menu {
 		//g.drawImage(menuPlay, Game.centerX - 235, Game.centerY - 240, 500, 100, null);
 		//g.drawImage(menuOptions, Game.centerX-380, Game.centerY - 80, 800, 100, null);
 		//g.drawImage(menuQuit, Game.centerX-250, Game.centerY + 80, 500, 100, null);
-		g.drawImage(menuChangePlayer, Game.centerX-380, Game.centerY + 300, 800, 100, null);
-		
-		drawButton(g, play, "Play", 105, 100, 140);
-		drawButton(g, options, "Options", 100, 100, 140);
-		drawButton(g, quit, "Quit", 100, 100, 140);
-		drawButton(g, changeLeft, "", 100, 0, 120);
-		drawButton(g, changeRight, "", 165, 0, 120);
-		
-		//set what player
-		drawButton(g, name, text[num], textX[num], textY[num], textSize[num]);
 		
 		
+		if(Game.Option == false) {
+			drawButton(g, play, "Play", 105, 100, 140);
+			drawButton(g, options, "Options", 100, 100, 140);
+			drawButton(g, quit, "Quit", 100, 100, 140);
+			drawButton(g, changeLeft, "", 100, 0, 120);
+			drawButton(g, changeRight, "", 165, 0, 120);
+			g.drawImage(menuChangePlayer, Game.centerX-380, Game.centerY + 300, 800, 100, null);
+			//set what player
+			drawButton(g, name, text[num], textX[num], textY[num], textSize[num]);
+		} else if(Game.Option == true) {
+			drawButton(g, back, "Back", 105, 100, 140);
+			drawButton(g, sounds, "Sounds", 105, 100, 140);
+			drawButton(g, difficulty, "Difficulty", 100, 100, 140);
+			drawButton(g, tutorial, "Tutorial", 100, 100, 140);
+		}
 	
 		player = ss.grabImage(w_row, w_col, 64, 64);
 		//g.drawImage(player,  Game.WIDTH-480, Game.HEIGHT-280, 256, 256, null);

@@ -9,6 +9,6 @@ public enum ID {
 	Floor(),
 	Laser(),
 	ForeGround(),
-	Pause();
-	
+	Pause(), 
+	Options;
 }

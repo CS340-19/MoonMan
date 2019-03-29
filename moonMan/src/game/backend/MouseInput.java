@@ -55,6 +55,57 @@ public class MouseInput extends MouseAdapter {
 							Menu.num++;
 						}
 					}
+					if(rect.intersects(Menu.play) && Game.Option == false) {
+						//if(Game.Option == false) {
+							try {
+								game.sounds.audioPlayer.main("./src/game/sounds/wav_files/select.wav");
+							} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							Game.state = GameState.GAME;
+							Game.game_background = 1;
+							for(int i = 0; i < Handler.getObjects().size(); i++) {
+								if(Handler.getObjects().get(i).getID() == ID.Player) {
+									Player playerp = (Player) Handler.getObjects().get(i);
+									playerp.reset();
+									Game.score = 0;
+								}
+								if(Handler.getObjects().get(i).getID() == ID.ForeGround) {
+									Foreground foreground = (Foreground) Handler.getObjects().get(i);
+									foreground.reset();
+								}
+								if(Handler.getObjects().get(i).getID() == ID.Squidman) {
+									SquidMan squidman = (SquidMan) Handler.getObjects().get(i);
+									squidman.reset();
+								}
+							}
+						//}
+					} else if(rect.intersects(Menu.options) && Game.Option == false) {
+						if(Game.Option == false) {
+							try {
+								game.sounds.audioPlayer.main("./src/game/sounds/wav_files/select.wav");
+							} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							Game.Option = true;
+						}
+					} else if(rect.intersects(Menu.quit) && Game.Option == false) {
+						System.exit(0);
+					}
+					
+					if(rect.intersects(Menu.back) && Game.Option == true) {
+						if(Game.Option == true) {
+							try {
+								game.sounds.audioPlayer.main("./src/game/sounds/wav_files/select.wav");
+							} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							Game.Option = false;
+						}
+					}
 					break;
 				case OPTIONS:
 					break;
@@ -85,38 +136,18 @@ public class MouseInput extends MouseAdapter {
 					}
 					break;
 				case MENU:
-					if(rect.intersects(Menu.play)) {
-						try {
-							game.sounds.audioPlayer.main("./src/game/sounds/wav_files/select.wav");
-						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						Game.state = GameState.GAME;
-						for(int i = 0; i < Handler.getObjects().size(); i++) {
-							if(Handler.getObjects().get(i).getID() == ID.Player) {
-								Player player = (Player) Handler.getObjects().get(i);
-								player.reset();
-								Game.score = 0;
-							}
-							if(Handler.getObjects().get(i).getID() == ID.ForeGround) {
-								Foreground foreground = (Foreground) Handler.getObjects().get(i);
-								foreground.reset();
-							}
-							if(Handler.getObjects().get(i).getID() == ID.Squidman) {
-								SquidMan squidman = (SquidMan) Handler.getObjects().get(i);
-								squidman.reset();
-							}
-						}
-					} else if(rect.intersects(Menu.quit)) {
-						Game.state = GameState.QUIT;
-					}
 					break;
 				case OPTIONS:
 					break;
 				case PAUSE:
 					if(rect.intersects(Menu.play)) {
 						Game.state = GameState.GAME;
+						try {
+							game.sounds.audioPlayer.main("./src/game/sounds/wav_files/select.wav");
+						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						for(int i = 0; i < Handler.getObjects().size(); i++) {
 							if(Handler.getObjects().get(i).getID() == ID.Pause) {
 								Pause pause = (Pause) Handler.getObjects().get(i);
@@ -132,7 +163,7 @@ public class MouseInput extends MouseAdapter {
 				case SPLASH_SCREEN:
 					break;
 				case QUIT:
-					System.exit(0);
+					//System.exit(0);
 					break;
 				default:
 					break;

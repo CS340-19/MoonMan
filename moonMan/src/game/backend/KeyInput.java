@@ -36,6 +36,7 @@ public class KeyInput extends KeyAdapter {
 				/* Space key = Jump */
 				if(key == KeyEvent.VK_SPACE && key != lastKey && player.is_floating == false && player.in_air == false) {
 					lastKey = key;
+					Foreground.checkCollision();
 					if(!player.isJumping() && jumped == false) {
 						player.setJumping(true);
 						try {

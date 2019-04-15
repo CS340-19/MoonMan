@@ -62,6 +62,8 @@ public class Game extends Canvas implements Runnable {
 	public static int enemiesRemaining = 10;
 	public static int score = 0;
 	public static Rectangle scoreRect;
+	public static int spawnflag[];
+
 	//public static GameState state = GameState.MENU;
 	
 	
@@ -74,7 +76,7 @@ public class Game extends Canvas implements Runnable {
 		Menu.initMenu();
 		
 		int x = -32;
-		for(int i = 0; i <= 60; i++) {
+		for(int i = 0; i <= 120; i++) {
 			Handler.addObject(new Floor(x, HEIGHT - 64, 40, 64, ID.Floor));
 			x += 32;
 		}
@@ -85,9 +87,9 @@ public class Game extends Canvas implements Runnable {
 		Random random = new Random();
 		enemy_offset = random.nextInt(WIDTH/2);
 		//Handler.addObject(new SquidMan(centerX - 32 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
-		for(int i = 0; i < enemiesRemaining; i++) {
-			Handler.addObject(new SquidMan(1800, HEIGHT/2 - 32, 64, 64, ID.Squidman));
-		}
+		//for(int i = 0; i < enemiesRemaining; i++) {
+		//	Handler.addObject(new SquidMan(1800, HEIGHT/2 - 32, 64, 64, ID.Squidman));
+		//}
 	}
 	
 	public static void drawButton(Graphics g, Rectangle rect, String text, int offsetX, int offsetY, float size) {
@@ -138,6 +140,12 @@ public class Game extends Canvas implements Runnable {
 		jetpackfuel_full_ss = loader.loadImage("./src/game/graphics/sprites/JetPackFuelBar_SS.png");
 		jetpackfuel_ss = new JetPackFuelResolver(jetpackfuel_full_ss);
 		scoreRect = new Rectangle(Game.centerX - (int) (Game.WIDTH/2.42), Game.centerY - (int) (Game.HEIGHT/2.35), 20, 20);
+		spawnflag = new int[5];
+		spawnflag[0] = 0;
+		spawnflag[1] = 0;
+		spawnflag[2] = 0;
+		spawnflag[3] = 0;
+		spawnflag[4] = 0;
 	}
 	
 	//Main game loop
@@ -182,6 +190,38 @@ public class Game extends Canvas implements Runnable {
 			Menu.tick();
 		}
 		if(state == GameState.GAME) {
+			System.out.println(Foreground.whereYourAt);
+			if( Foreground.whereYourAt >= 10 && Foreground.whereYourAt <= 20 ) {
+				if(spawnflag[0] == 0) {
+					Handler.addObject(new SquidMan(1500, HEIGHT - 100 , 64, 64, ID.Squidman));
+					spawnflag[0] = 1;
+				}
+			}
+			if( Foreground.whereYourAt >= 810 && Foreground.whereYourAt <= 820 ) {
+				if(spawnflag[1] == 0) {
+					Handler.addObject(new SquidMan(2300, HEIGHT - 100 , 64, 64, ID.Squidman));		
+					spawnflag[1] = 1;
+				}
+			}
+			if( Foreground.whereYourAt >= 1610 && Foreground.whereYourAt <= 1620 ) {
+				if(spawnflag[2] == 0) {
+					Handler.addObject(new SquidMan(3100, HEIGHT - 100 , 64, 64, ID.Squidman));		
+					spawnflag[2] = 1;
+				}
+			}
+			if( Foreground.whereYourAt >= 2410 && Foreground.whereYourAt <= 2420 ) {
+				if(spawnflag[3] == 0) {
+					Handler.addObject(new SquidMan(3900, HEIGHT - 100 , 64, 64, ID.Squidman));		
+					spawnflag[3] = 1;
+				}
+			}
+			if( Foreground.whereYourAt >= 3210 && Foreground.whereYourAt <= 3220 ) {
+				if(spawnflag[4] == 0) {
+					Handler.addObject(new SquidMan(4700, HEIGHT - 100 , 64, 64, ID.Squidman));		
+					spawnflag[4] = 1;
+				}
+			}
+			
 			//if(Laser.enemyKilled) {
 				//for(int i = 0; i < enemiesRemaining; i++) {
 				//	Random random = new Random();
@@ -190,6 +230,7 @@ public class Game extends Canvas implements Runnable {
 				//}
 			//}
 			
+			/*
 			if( tickCount >= minTick && tickCount < maxTick && tickCount % 20 == 0 ) {
 				Random random = new Random();
 				enemy_offset = random.nextInt(WIDTH/2);
@@ -208,8 +249,8 @@ public class Game extends Canvas implements Runnable {
 						Handler.addObject(new SquidMan( Player.X - enemy_offset, HEIGHT - 3000, 64, 64, ID.Squidman));
 					}
 				}
-				//*/
 			}
+			*/
 			if( tickCount >= maxTick ) {
 				tickCount = 0;
 				maxTick *= 2;

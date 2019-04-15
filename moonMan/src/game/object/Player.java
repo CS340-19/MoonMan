@@ -107,6 +107,12 @@ public class Player extends GameObject {
 		jf_h = 1;
 		X = x;
 		stay = false;
+		
+		Game.spawnflag[0] = 0;
+		Game.spawnflag[1] = 0;
+		Game.spawnflag[2] = 0;
+		Game.spawnflag[3] = 0;
+		Game.spawnflag[4] = 0;
 	}
 	
 	public void tick() {

@@ -70,9 +70,8 @@ public class Foreground extends GameObject{
 
 	@Override
 	public void render(Graphics g, int row, int col) {	
-		//g.setColor(Color.white);
+		g.setColor(Color.white);
 		//g.drawRect(0, 0, 20, Game.HEIGHT);
-		//g.drawRect((totalWidth)-whereYourAt, 0, 20, Game.HEIGHT);
 		//g.drawRect(Game.centerX - (int) ((Game.WIDTH/1.3)/2)-32, 0, 10, Game.HEIGHT);
 		//g.drawRect(Game.centerX + (int) ((Game.WIDTH/1.3)/2)-64, 0, 10, Game.HEIGHT);
 	}

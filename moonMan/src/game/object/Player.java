@@ -13,6 +13,9 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import game.object.Foreground;
 
 import game.backend.Game;
@@ -132,7 +135,12 @@ public class Player extends GameObject {
 		}
 		
 		fall();
-		checkCollision();
+		try {
+			checkCollision();
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		if (walking == true) {
 			if(walk_sleep_counter == 0) {
@@ -301,7 +309,7 @@ public class Player extends GameObject {
 		g.drawImage(moonMan,  x, y -20, 128, 128, null);
 	}
 	
-	private void checkCollision() {
+	private void checkCollision() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		for (GameObject obj : floorBlocks) {
 			if (obj.getID() == ID.Floor) {
 				floor = (Floor) obj;
@@ -321,6 +329,9 @@ public class Player extends GameObject {
 				squidman = (SquidMan) Handler.getObjects().get(i);
 				if (getBottomBounds().intersects(squidman.getBottomBounds())) {
 					Game.state = GameState.MENU;
+					Game.Music.stop();
+					Game.game_background = 0;
+					Game.loaded = 0;
 				}
 			}
 		}

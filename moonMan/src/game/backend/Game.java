@@ -25,6 +25,7 @@ import game.object.Player;
 import game.object.SquidMan;
 import game.screens.Menu;
 import game.screens.SplashScreen;
+import game.sounds.audioPlayer;
 
 public class Game extends Canvas implements Runnable {
 	
@@ -46,6 +47,7 @@ public class Game extends Canvas implements Runnable {
 	public int maxTick = 500;
 	public int minTick = 300;
 	public static int game_background = 0;
+	public static int loaded = 0;
 	private Thread thread;
 	private SplashScreen splashscreen;
 	private boolean running = false;
@@ -63,6 +65,7 @@ public class Game extends Canvas implements Runnable {
 	public static int score = 0;
 	public static Rectangle scoreRect;
 	public static int spawnflag[];
+	public static audioPlayer Music;
 
 	//public static GameState state = GameState.MENU;
 	
@@ -76,7 +79,7 @@ public class Game extends Canvas implements Runnable {
 		Menu.initMenu();
 		
 		int x = -32;
-		for(int i = 0; i <= 120; i++) {
+		for(int i = 0; i <= 180; i++) {
 			Handler.addObject(new Floor(x, HEIGHT - 64, 40, 64, ID.Floor));
 			x += 32;
 		}
@@ -289,6 +292,7 @@ public class Game extends Canvas implements Runnable {
 				break;
 			case GAME:
 				if(game_background == 1) {
+					loaded = 1;
 				try {
 					game.sounds.audioPlayer.main("./src/game/sounds/wav_files/Main_background_music.wav");
 				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {

@@ -10,6 +10,9 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException; 
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import game.backend.Game;
+import game.backend.GameState;
+
 public class audioPlayer {
 	Clip clip;
 	AudioInputStream audioInputStream;
@@ -28,6 +31,9 @@ public class audioPlayer {
 	{
 		filePath = file;
 		audioPlayer audioP = new audioPlayer();
+		if(Game.game_background == 1 && Game.loaded == 1) {
+			Game.Music = audioP;
+		}
 		audioP.play();
 	}
 	

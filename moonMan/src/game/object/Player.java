@@ -40,9 +40,9 @@ public class Player extends GameObject {
 	private Boolean jumping = false;
 	private Boolean falling = true;
 	public int gravity = 1;
-	public Boolean facing_right = true;
-	public Boolean walking = false;
+	public static Boolean walking = false;
 	public Boolean in_air = false;
+	public static Boolean facing_right = false;
 	public Boolean is_floating = false;
 	public Boolean is_flying = false;
 	public Boolean firstCall = false;
@@ -110,6 +110,7 @@ public class Player extends GameObject {
 		jf_h = 1;
 		X = x;
 		stay = false;
+		Game.counter = 0;
 		
 		Game.spawnflag[0] = 0;
 		Game.spawnflag[1] = 0;
@@ -128,6 +129,7 @@ public class Player extends GameObject {
 			y += velY;
 		}else if((x >= (Game.centerX + (int) ((Game.WIDTH/1.2)/2))) && velX > 0) {
 			Game.state = GameState.MENU;
+			Game.dificulty++;
 		}else {
 			x += velX;
 			X = x;
@@ -207,9 +209,8 @@ public class Player extends GameObject {
 			jf_h = 4;
 		}
 		
-		if (!pressingA && !pressingD) {
-			walking = false;
-		}
+		
+		
 		
 		if (jumping == true) {
 			in_air = true;
@@ -227,6 +228,9 @@ public class Player extends GameObject {
 					walking = true;	
 				}
 			}
+		}
+		if (!pressingA && !pressingD) {
+			walking = false;
 		}
 		
 		/* Floating mechanics needed for jetpack */
@@ -332,6 +336,14 @@ public class Player extends GameObject {
 					Game.Music.stop();
 					Game.game_background = 0;
 					Game.loaded = 0;
+					
+					for (int i1 = 0; i1 < Handler.getObjects().size(); i1++) {
+						if (Handler.getObjects().get(i1).getID() == ID.Squidman) {
+							Handler.removeObject(squidman);
+							Game.enemiesRemaining--;
+						}
+					}
+					Game.dificulty = 0;
 				}
 			}
 		}

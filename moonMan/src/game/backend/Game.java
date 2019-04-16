@@ -35,6 +35,7 @@ public class Game extends Canvas implements Runnable {
 	public BufferedImage background;
 	public BufferedImage foreground;
 	public BufferedImage ship;
+	public static int counter = 0;
 	public BufferedImage mm_plate;
 	public BufferedImage score_plate;
 	public BufferedImage jetpack_plate;
@@ -66,6 +67,7 @@ public class Game extends Canvas implements Runnable {
 	public static Rectangle scoreRect;
 	public static int spawnflag[];
 	public static audioPlayer Music;
+	public static int dificulty = 0;
 
 	//public static GameState state = GameState.MENU;
 	
@@ -176,7 +178,7 @@ public class Game extends Canvas implements Runnable {
 			
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				System.out.println("FPS: " + frames);
+				//System.out.println("FPS: " + frames);
 				frames = 0;
 			}
 				
@@ -193,45 +195,64 @@ public class Game extends Canvas implements Runnable {
 			Menu.tick();
 		}
 		if(state == GameState.GAME) {
-			System.out.println(Foreground.whereYourAt);
-			if( Foreground.whereYourAt >= 10 && Foreground.whereYourAt <= 20 ) {
+			if( Foreground.whereYourAt >= 10 && Foreground.whereYourAt <= 60 ) {
 				if(spawnflag[0] == 0) {
-					Handler.addObject(new SquidMan(1500, HEIGHT - 100 , 64, 64, ID.Squidman));
-					spawnflag[0] = 1;
+					Handler.addObject(new SquidMan(1500 + (counter*40), HEIGHT - 100 , 64, 64, ID.Squidman));
+					counter++;
+					if(counter == 5) {
+						spawnflag[0] = 1;
+						counter = 0;
+					}
 				}
 			}
-			if( Foreground.whereYourAt >= 810 && Foreground.whereYourAt <= 820 ) {
-				if(spawnflag[1] == 0) {
-					Handler.addObject(new SquidMan(2300, HEIGHT - 100 , 64, 64, ID.Squidman));		
-					spawnflag[1] = 1;
+			if( Foreground.whereYourAt >= 810 && Foreground.whereYourAt <= 860 ) {
+				if(spawnflag[1] == 0) {	
+					Handler.addObject(new SquidMan(2300 + (counter*40), HEIGHT - 100 , 64, 64, ID.Squidman));
+					counter++;
+					if(counter == 5) {
+						spawnflag[1] = 1;
+						counter = 0;
+					}
 				}
 			}
-			if( Foreground.whereYourAt >= 1610 && Foreground.whereYourAt <= 1620 ) {
-				if(spawnflag[2] == 0) {
-					Handler.addObject(new SquidMan(3100, HEIGHT - 100 , 64, 64, ID.Squidman));		
-					spawnflag[2] = 1;
+			if( Foreground.whereYourAt >= 1610 && Foreground.whereYourAt <= 1660 ) {
+				if(spawnflag[2] == 0) {	
+					Handler.addObject(new SquidMan(3100 + (counter*40), HEIGHT - 100 , 64, 64, ID.Squidman));
+					counter++;
+					if(counter == 5) {
+						spawnflag[2] = 1;
+						counter = 0;
+					}
 				}
 			}
-			if( Foreground.whereYourAt >= 2410 && Foreground.whereYourAt <= 2420 ) {
+			if( Foreground.whereYourAt >= 2410 && Foreground.whereYourAt <= 2460 ) {
 				if(spawnflag[3] == 0) {
-					Handler.addObject(new SquidMan(3900, HEIGHT - 100 , 64, 64, ID.Squidman));		
-					spawnflag[3] = 1;
+					Handler.addObject(new SquidMan(3900 + (counter*40), HEIGHT - 100 , 64, 64, ID.Squidman));
+					counter++;
+					if(counter == 5) {
+						spawnflag[3] = 1;
+						counter = 0;
+					}
 				}
 			}
-			if( Foreground.whereYourAt >= 3210 && Foreground.whereYourAt <= 3220 ) {
+			if( Foreground.whereYourAt >= 3210 && Foreground.whereYourAt <= 3260 ) {
 				if(spawnflag[4] == 0) {
-					Handler.addObject(new SquidMan(4700, HEIGHT - 100 , 64, 64, ID.Squidman));		
-					spawnflag[4] = 1;
+					Handler.addObject(new SquidMan(4700 + (counter*40), HEIGHT - 100 , 64, 64, ID.Squidman));
+					counter++;
+					if(counter == 5) {
+						spawnflag[4] = 1;
+						counter = 0;
+					}
 				}
 			}
 			
-			//if(Laser.enemyKilled) {
-				//for(int i = 0; i < enemiesRemaining; i++) {
-				//	Random random = new Random();
-				//	enemy_offset = random.nextInt(WIDTH/2);
-				//	Handler.addObject(new SquidMan(1000 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
-				//}
-			//}
+//			if(Laser.enemyKilled) {
+//				for(int i = 0; i < enemiesRemaining; i++) {
+//					Random random = new Random();
+//					enemy_offset = random.nextInt(WIDTH/2);
+//					Handler.addObject(new SquidMan(1000 + enemy_offset, HEIGHT - 100, 64, 64, ID.Enemy));
+//				}
+//			}
 			
 			/*
 			if( tickCount >= minTick && tickCount < maxTick && tickCount % 20 == 0 ) {

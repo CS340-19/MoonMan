@@ -52,6 +52,7 @@ public class SquidMan extends GameObject {
 	private static int y_save;
 	private static int width_save;
 	private static int height_save;
+	private int health = 5;
 	
 	public SquidMan(int x, int y, int tmp_width, int tmp_height, ID id) {
 		super(x, y, id);
@@ -61,6 +62,7 @@ public class SquidMan extends GameObject {
 		height_save = tmp_height;
 		width = tmp_width;
 		height = tmp_height;
+		health = 5 + Game.dificulty;
 	
 		BufferedImageLoader loader = new BufferedImageLoader();
 		squidMan_ss = loader.loadImage("./src/game/graphics/sprites/SquidMan_SS.png");
@@ -89,6 +91,7 @@ public class SquidMan extends GameObject {
 		width = width_save;
 		height = height_save;
 		jumpTimer = 60;
+		health = 5;
 	}
 	
 	public void tick() {
@@ -110,40 +113,81 @@ public class SquidMan extends GameObject {
 				player_y = player.getY();
 			}
 			
-			SquidMan squidman = null;
-			for(int i = 0; i < Handler.getObjects().size(); i++) {
-				if(Handler.getObjects().get(i).getID() == ID.Squidman) {
-					squidman = (SquidMan) Handler.getObjects().get(i);
-				}
+//			SquidMan squidman = null;
+//			for(int i = 0; i < Handler.getObjects().size(); i++) {
+//				if(Handler.getObjects().get(i).getID() == ID.Squidman) {
+//					squidman = (SquidMan) Handler.getObjects().get(i);
+//				}
+//			}
+//			if(squidman.getID() == ID.Squidman) {
+//				squidman_x = squidman.getX();
+//				squidman_y = squidman.getY();
+//			}
+//			
+//			if( squidman_x == player_x ) {
+//				squidman.setVelX(0);
+//				squidman.setWalking(false);
+//			}
+//			else if(squidman_x > player_x && abs( squidman_x - player_x) > 3 && Foreground.LeftWall == true) {
+//				squidman.setVelX(-3);
+//				squidman.setFacing_right(false);
+//				squidman.setWalking(true);
+//			}else if(squidman_x > player_x && abs( squidman_x - player_x) > 3 && Foreground.LeftWall == false) {
+//				if(player.stay) {
+//					squidman.setVelX(1);
+//				}else {
+//					squidman.setVelX(-3);
+//				}
+//				squidman.setFacing_right(false);
+//				squidman.setWalking(true);
+//			}else if(squidman_x < player_x && abs( squidman_x - player_x) > 3 && Foreground.RightWall == true) {
+//				squidman.setVelX(3);
+//				squidman.setFacing_right(true);
+//				squidman.setWalking(true);
+//			}else if(squidman_x < player_x && abs( squidman_x - player_x) > 3 && Foreground.RightWall == false) {
+//				if(player.stay) {
+//					squidman.setVelX(-1);
+//				}else {
+//					squidman.setVelX(3);
+//				}
+//				squidman.setFacing_right(true);
+//				squidman.setWalking(true);
+//			}else {
+//				squidman.setVelX(0);
+//				squidman.setWalking(false);
+//			}
+
+			if( x == player_x ) {
+				setVelX(0);
+				setWalking(false);
 			}
-			if(squidman.getID() == ID.Squidman) {
-				squidman_x = squidman.getX();
-				squidman_y = squidman.getY();
-			}
-			
-			if( squidman_x == player_x ) {
-				squidman.setVelX(0);
-				squidman.setWalking(false);
-			}
-			else if(squidman_x > player_x && abs( squidman_x - player_x) > 3) {
+			else if(x > player_x && abs( x - player_x) > 3 && Foreground.LeftWall == true) {
+				setVelX(-3);
+				setFacing_right(false);
+				setWalking(true);
+			}else if(x > player_x && abs( x - player_x) > 3 && Foreground.LeftWall == false) {
 				if(player.stay) {
-					squidman.setVelX(1);
+					setVelX(1);
 				}else {
-					squidman.setVelX(-3);
+					setVelX(-3);
 				}
-				squidman.setFacing_right(false);
-				squidman.setWalking(true);
-			}else if(squidman_x < player_x && abs( squidman_x - player_x) > 3) {
+				setFacing_right(false);
+				setWalking(true);
+			}else if(x < player_x && abs( x - player_x) > 3 && Foreground.RightWall == true) {
+				setVelX(3);
+				setFacing_right(true);
+				setWalking(true);
+			}else if(x < player_x && abs( x - player_x) > 3 && Foreground.RightWall == false) {
 				if(player.stay) {
-					squidman.setVelX(-1);
+					setVelX(-1);
 				}else {
-					squidman.setVelX(3);
+					setVelX(3);
 				}
-				squidman.setFacing_right(true);
-				squidman.setWalking(true);
+				setFacing_right(true);
+				setWalking(true);
 			}else {
-				squidman.setVelX(0);
-				squidman.setWalking(false);
+				setVelX(0);
+				setWalking(false);
 			}
 			/*
 			if( squidman_y > player_y && abs( squidman_x - player_x ) <= 200 && jumped == false ) {
@@ -285,5 +329,13 @@ public class SquidMan extends GameObject {
 	
 	public void setIn_air(Boolean in_air) {
 		this.in_air = in_air;
+	}
+	
+	public int getHealth() {
+		return health;
+	}
+	
+	public void setHealth(int h) {
+		health = h;
 	}
 }

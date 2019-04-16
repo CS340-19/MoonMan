@@ -57,10 +57,17 @@ public class Laser extends GameObject{
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					int tmp = squidman.getHealth();
+					tmp--;
+					squidman.setHealth(tmp);
+					System.out.println(squidman.getHealth() + ": " + i);
+					if(squidman.getHealth() < 1) {
+						Handler.removeObject(squidman);
+						Game.score += (5 + Game.dificulty);
+						Game.enemiesRemaining--;
+						//squidman.setHealth(5);
+					}
 					remove_me = 1;
-					Handler.removeObject(squidman);
-					Game.score += 5;
-					Game.enemiesRemaining--;
 				}else enemyKilled = false;
 			}
 		}

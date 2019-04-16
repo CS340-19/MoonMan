@@ -96,7 +96,7 @@ public class KeyInput extends KeyAdapter {
 					*/
 					player.setVelX(-5);
 					player.setFacing_right(false);
-					player.setWalking(true);
+					//player.setWalking(true);
 					keyPressed[0] = true;
 					if(keyPressed[1]) keyPressed[1] = false;
 				}
@@ -119,7 +119,7 @@ public class KeyInput extends KeyAdapter {
 					*/
 					player.setVelX(5);
 					player.setFacing_right(true);
-					player.setWalking(true);
+					//player.setWalking(true);
 					keyPressed[1] = true;
 					if(keyPressed[0]) keyPressed[0] = false;
 				}
@@ -185,6 +185,8 @@ public class KeyInput extends KeyAdapter {
 				}
 				if(!keyPressed[0] && !keyPressed[1]) {
 					player.setVelX(0);
+					player.pressingA = false;
+					player.pressingD = false;
 				}
 				
 			}

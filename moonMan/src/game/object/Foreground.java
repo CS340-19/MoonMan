@@ -93,18 +93,34 @@ public class Foreground extends GameObject{
 					Ending = false;
 				}
 				if(getLeftBounds().intersects(player.getBottomBounds())) {
-					if((Player.X+whereYourAt > (int)(Game.WIDTH/15)) && Begining == false) {
+					if((player.X+whereYourAt > (int)(Game.WIDTH/15)) && Begining == false) {
 						X += 7;
 						whereYourAt -= 7;
+						RightWall = true;
+						if(player.walking == true && player.facing_right == false) {
+							player.stay = true;
+						}else {
+							player.stay = false;
+						}
 						//System.out.println("whereYourAT: " + whereYourAt + "   total: " + Player.X+whereYourAt);
 					}
 					
 				}else if(getRightBounds().intersects(player.getBottomBounds())) {
-					if((Player.X+whereYourAt < totalWidth-(int)(Game.WIDTH/4.7)) && Ending == false) {
+					if((player.X+whereYourAt < totalWidth-(int)(Game.WIDTH/4.7)) && Ending == false) {
 						X -= 7;
 						whereYourAt += 7;
+						LeftWall = true;
+						if(player.walking == true && player.facing_right == true) {
+							player.stay = true;
+						}else {
+							player.stay = false;
+						}
 						//System.out.println("whereYourAT: " + whereYourAt + "   total: " + Player.X+whereYourAt);
 					}
+				}else {
+					player.stay = false;
+					RightWall = false;
+					LeftWall = false;
 				}
 			}
 		}

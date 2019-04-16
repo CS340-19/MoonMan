@@ -2,6 +2,8 @@ package game.backend;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
+import game.object.ID;
+
 //Loops through all objects in game, updates them then renders to the screen
 public class Handler {
 	
@@ -13,6 +15,9 @@ public class Handler {
 		if(Game.Pause == false) {
 			for(int i = 0; i < objects.size(); i++) {
 				GameObject object = objects.get(i);
+				if(object.id == ID.Squidman) {
+					//System.out.println("squid " + i);
+				}
 				object.tick();
 			}
 		}

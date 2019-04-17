@@ -65,6 +65,12 @@ public class Laser extends GameObject{
 						Handler.removeObject(squidman);
 						Game.score += (5 + Game.dificulty);
 						Game.enemiesRemaining--;
+						try {
+							game.sounds.audioPlayer.main("./src/game/sounds/wav_files/enemy_killed.wav");
+						} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						//squidman.setHealth(5);
 					}
 					remove_me = 1;

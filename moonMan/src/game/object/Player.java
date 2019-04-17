@@ -129,6 +129,14 @@ public class Player extends GameObject {
 			y += velY;
 		}else if((x >= (Game.centerX + (int) ((Game.WIDTH/1.2)/2))) && velX > 0) {
 			Game.state = GameState.MENU;
+			try {
+				Game.Music.stop();
+			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Game.game_background = 0;
+			Game.loaded = 0;
 			Game.dificulty++;
 		}else {
 			x += velX;

@@ -112,50 +112,6 @@ public class SquidMan extends GameObject {
 				player_x = player.getX();
 				player_y = player.getY();
 			}
-			
-//			SquidMan squidman = null;
-//			for(int i = 0; i < Handler.getObjects().size(); i++) {
-//				if(Handler.getObjects().get(i).getID() == ID.Squidman) {
-//					squidman = (SquidMan) Handler.getObjects().get(i);
-//				}
-//			}
-//			if(squidman.getID() == ID.Squidman) {
-//				squidman_x = squidman.getX();
-//				squidman_y = squidman.getY();
-//			}
-//			
-//			if( squidman_x == player_x ) {
-//				squidman.setVelX(0);
-//				squidman.setWalking(false);
-//			}
-//			else if(squidman_x > player_x && abs( squidman_x - player_x) > 3 && Foreground.LeftWall == true) {
-//				squidman.setVelX(-3);
-//				squidman.setFacing_right(false);
-//				squidman.setWalking(true);
-//			}else if(squidman_x > player_x && abs( squidman_x - player_x) > 3 && Foreground.LeftWall == false) {
-//				if(player.stay) {
-//					squidman.setVelX(1);
-//				}else {
-//					squidman.setVelX(-3);
-//				}
-//				squidman.setFacing_right(false);
-//				squidman.setWalking(true);
-//			}else if(squidman_x < player_x && abs( squidman_x - player_x) > 3 && Foreground.RightWall == true) {
-//				squidman.setVelX(3);
-//				squidman.setFacing_right(true);
-//				squidman.setWalking(true);
-//			}else if(squidman_x < player_x && abs( squidman_x - player_x) > 3 && Foreground.RightWall == false) {
-//				if(player.stay) {
-//					squidman.setVelX(-1);
-//				}else {
-//					squidman.setVelX(3);
-//				}
-//				squidman.setFacing_right(true);
-//				squidman.setWalking(true);
-//			}else {
-//				squidman.setVelX(0);
-//				squidman.setWalking(false);
-//			}
 
 			if( x == player_x ) {
 				setVelX(0);
@@ -189,27 +145,6 @@ public class SquidMan extends GameObject {
 				setVelX(0);
 				setWalking(false);
 			}
-			/*
-			if( squidman_y > player_y && abs( squidman_x - player_x ) <= 200 && jumped == false ) {
-				if( jumpTimer >= 90 ) {
-					jumping = true;
-					jumped = true;
-					squidman.setVelY(-25);
-					jumpTimer = 0;
-				}
-			}
-			else {
-				jumping = false;
-			}
-			jumpTimer++;
-			
-			if(jumping == true) {
-				in_air = true;
-				//walking = false;
-			}else {
-				in_air = false;
-			}
-			*/
 	
 			if(walking == true) {
 				if(walk_sleep_counter == 0) {

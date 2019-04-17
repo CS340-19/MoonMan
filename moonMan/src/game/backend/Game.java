@@ -197,7 +197,7 @@ public class Game extends Canvas implements Runnable {
 		if(state == GameState.GAME) {
 			if( Foreground.whereYourAt >= 10 && Foreground.whereYourAt <= 60 ) {
 				if(spawnflag[0] == 0) {
-					Handler.addObject(new SquidMan(1500 + (counter*40), HEIGHT - 100 , 64, 64, ID.Squidman));
+					Handler.addObject(new SquidMan(1500 + (counter*80), HEIGHT - 100 , 64, 64, ID.Squidman));
 					counter++;
 					if(counter == 5) {
 						spawnflag[0] = 1;
@@ -207,9 +207,9 @@ public class Game extends Canvas implements Runnable {
 			}
 			if( Foreground.whereYourAt >= 810 && Foreground.whereYourAt <= 860 ) {
 				if(spawnflag[1] == 0) {	
-					Handler.addObject(new SquidMan(2300 + (counter*40), HEIGHT - 100 , 64, 64, ID.Squidman));
+					Handler.addObject(new SquidMan(2300 + (counter*80), HEIGHT - 100 , 64, 64, ID.Squidman));
 					counter++;
-					if(counter == 5) {
+					if(counter == 6) {
 						spawnflag[1] = 1;
 						counter = 0;
 					}
@@ -217,9 +217,9 @@ public class Game extends Canvas implements Runnable {
 			}
 			if( Foreground.whereYourAt >= 1610 && Foreground.whereYourAt <= 1660 ) {
 				if(spawnflag[2] == 0) {	
-					Handler.addObject(new SquidMan(3100 + (counter*40), HEIGHT - 100 , 64, 64, ID.Squidman));
+					Handler.addObject(new SquidMan(3100 + (counter*80), HEIGHT - 100 , 64, 64, ID.Squidman));
 					counter++;
-					if(counter == 5) {
+					if(counter == 8) {
 						spawnflag[2] = 1;
 						counter = 0;
 					}
@@ -227,9 +227,9 @@ public class Game extends Canvas implements Runnable {
 			}
 			if( Foreground.whereYourAt >= 2410 && Foreground.whereYourAt <= 2460 ) {
 				if(spawnflag[3] == 0) {
-					Handler.addObject(new SquidMan(3900 + (counter*40), HEIGHT - 100 , 64, 64, ID.Squidman));
+					Handler.addObject(new SquidMan(3900 + (counter*80), HEIGHT - 100 , 64, 64, ID.Squidman));
 					counter++;
-					if(counter == 5) {
+					if(counter == 10) {
 						spawnflag[3] = 1;
 						counter = 0;
 					}
@@ -237,9 +237,9 @@ public class Game extends Canvas implements Runnable {
 			}
 			if( Foreground.whereYourAt >= 3210 && Foreground.whereYourAt <= 3260 ) {
 				if(spawnflag[4] == 0) {
-					Handler.addObject(new SquidMan(4700 + (counter*40), HEIGHT - 100 , 64, 64, ID.Squidman));
+					Handler.addObject(new SquidMan(4700 + (counter*80), HEIGHT - 100 , 64, 64, ID.Squidman));
 					counter++;
-					if(counter == 5) {
+					if(counter == 12) {
 						spawnflag[4] = 1;
 						counter = 0;
 					}

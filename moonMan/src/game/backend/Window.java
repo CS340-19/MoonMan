@@ -18,13 +18,13 @@ public class Window extends Canvas {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Game.WIDTH = screenSize.width;
 		Game.HEIGHT = screenSize.height;
+
 		Game.centerX = Game.WIDTH /2;
 		Game.centerY = Game.HEIGHT /2;
 		
 		frame.setPreferredSize(new Dimension(width, height));
 		frame.setMaximumSize(new Dimension(width, height));
 		frame.setMinimumSize(new Dimension(width, height));
-
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);

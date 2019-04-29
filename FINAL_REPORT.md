@@ -43,10 +43,10 @@
   | ~~3/4/19~~ | ~~3/11/19~~ | ~~Hitbox detection for weapons, player and enemy health, scoring system~~ and saving game data to file. |
   | ~~3/11/19~~ | ~~3/18/19~~ | ~~Player customization,~~ weapon upgrades, ~~creating multiple levels/waves of enemies.~~ |
   | ~~3/18/19~~ | ~~3/25/19~~ | Further player and weapon customization, ~~adding different playable characters with unique attributes.~~ |
-  | ~~3/25/19~~ | ~~4/1/19~~ | Beta testing and further motion/game mechanics tweaks as needed. |
-  | 4/1/19 | 4/8/19 | Bug fixes/gameplay tweaks, adding between level mini-games(meteor showers, etc). |
-  | 4/8/19 | 4/15/19 | Final testing and small last minute modifications. |
-  | 4/15/19 | 4/22/19 | Project completion/game release. |
+  | ~~3/25/19~~ | ~~4/1/19~~ | ~~Beta testing and further motion/game mechanics tweaks as needed.~~ |
+  | ~~4/1/19~~ | ~~4/8/19~~ | ~~Bug fixes/gameplay tweaks,~~ adding between level mini-games(meteor showers, etc). |
+  | ~~4/8/19~~ | ~~4/15/19~~ | ~~Final testing and small last minute modifications.~~ |
+  | ~~4/15/19~~ | ~~4/22/19~~ | ~~Project completion/~~game release. |
     
 
 ## Team

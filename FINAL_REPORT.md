@@ -46,7 +46,7 @@
   | ~~3/25/19~~ | ~~4/1/19~~ | ~~Beta testing and further motion/game mechanics tweaks as needed.~~ |
   | ~~4/1/19~~ | ~~4/8/19~~ | ~~Bug fixes/gameplay tweaks,~~ adding between level mini-games(meteor showers, etc). |
   | ~~4/8/19~~ | ~~4/15/19~~ | ~~Final testing and small last minute modifications.~~ |
-  | ~~4/15/19~~ | ~~4/22/19~~ | ~~Project completion/~~game release. |
+  | ~~4/15/19~~ | ~~4/22/19~~ | ~~Project completion~~/game release. |
     
 
 ## Team

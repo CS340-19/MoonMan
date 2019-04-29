@@ -75,5 +75,7 @@ The teams experience in other programming languages has been vital in team membe
   As a result, we started development as soon as we had everything planned out. Developing as a team went great, we kept each other in check and made sure each member had fulfilled the job they were given. 
   Due to the structure of our project, testing the game was performed as development went along. Incrementally testing and developing ensured that no major bugs or hurdles prevented us from delivering a working, simple game.
   Overall, our team management was excellent thanks to our project manager Zach McMichael. Zach kept the team on track and pushed us to meet our goals and requirements. As a team, we functioned and coordinated well with each other. Most of the development was done by each individual in their own time, but any time we needed to meet and develop a part of the game or fix a bug, we would make great progress. 
-  **Conclusion**
+  
+  **Conclusion:**
+  
   Do we consider this project a success? Yes and no. Yes in terms of that we met the minimum requirements for this class and what we sought out to learn and gain experience from this. As a group, we learned how to code in Java, and how to build/work on a project using version control(Github) and working together as a team. No in terms of what we envisioned the final product to be, implementing a more dynamic game with customization and progressiveness in the game. Not that we were incapable of such a product, we were simply limited in the time we had for this project. 

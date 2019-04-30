@@ -28,7 +28,7 @@ Other than these additional features that were left out, we were succesful in ma
    Throughout the project we have taken pride in creating any and all needed features of our game from scratch, without using any predefined game libraries. We handle all player and enemy hitbox detection using the Java rectangle class and have done all animations manually using sprite sheets and the Java BufferedImage class. One of the more difficult parts of starting from scratch is figuring out solutions and what logic to use when implementing new features. It is up to the team to brainstorm on possible solutions and try to choose what we feel to be the best option. While this has definielty proven challenging it has helped to improve all team members programming and problem solving abilites.
    Throughout the first iteration our goal was to create a base game that the team was happy with. This meant creating all the needed framework and foundational pieces so that we can focus our final efforts on features and tweaks. We feel as though we are extremely close to meeting this goal and are just a few issues away. Below are some screen shots showing our progress so far. All artwork credit goes to team member Zach McMichael and was hand drawn.
    
-   
+   ![Image of game1](game1.png)
    
    
    One great part of developing a game is that the testing is rather painless. While we may have sometimes been disappointed our implementations failed, testing has been rather enjoyable. That being said, we have tested our game extensivley, trying everything possible to find bugs. This has resulted in quite a few changes to our implementations for player movement and creating a side-scrolling level. 

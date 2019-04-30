@@ -30,6 +30,9 @@ Other than these additional features that were left out, we were succesful in ma
    
    ![Image of game1](game1.png)
    
+   ![Image of game3](game3.png)
+   
+   ![Image of game4](game4.png)
    
    One great part of developing a game is that the testing is rather painless. While we may have sometimes been disappointed our implementations failed, testing has been rather enjoyable. That being said, we have tested our game extensivley, trying everything possible to find bugs. This has resulted in quite a few changes to our implementations for player movement and creating a side-scrolling level. 
    After finishing our minimum viable product, we intended to begin customizing the game to make it more interesting. Thus, we planned on adding multiple characters to choose from and different enemies to face. This would be fairly easy to implement as the base fraework for facing and defeating enemies has already been implemented. Alongside this, we want to add a more robust scoring system and a way to make the game more challenging. While we have made minor attempts at increasing the difficulty as the player progresses, the game certainly does not meet our standards. We will need to continue testing to figure out a good way of implementing the difficulty system.

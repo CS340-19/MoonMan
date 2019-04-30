@@ -27,11 +27,11 @@
    
    
    One great part of developing a game is that the testing is rather painless. While we may have sometimes been disappointed our implementations failed, testing has been rather enjoyable. That being said, we have tested our game extensivley, trying everything possible to find bugs. This has resulted in quite a few changes to our implementations for player movement and creating a side-scrolling level. 
-   The goals for the next iteration include putting the final polishes on our base game and then focusing on adding features and new characters. 
+   After finishing our minimum viable product, we intended to begin customizing the game to make it more interesting. Thus, we planned on adding multiple characters to choose from and different enemies to face. This would be fairly easy to implement as the base fraework for facing and defeating enemies has already been implemented. Alongside this, we want to add a more robust scoring system and a way to make the game more challenging. While we have made minor attempts at increasing the difficulty as the player progresses, the game certainly does not meet our standards. We will need to continue testing to figure out a good way of implementing the difficulty system.
 
 
 ## Project Management 
-  Our project is on schedule and we project to finish on time.
+  We completed a product we are satisfied with within the schedule, however we did not end up implementing everything we had hoped. We had to cut a good portion of what we had planned due to time constraints. As such, the game lacks extra content that would make the game more interesting and fun. We ended spending a good deal of time on bug fixes near the end of the semester. Because of this we were unable to dedicate as much time as we would have liked to other parts of the game.
   
   **Time Line:**
   
